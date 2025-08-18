@@ -122,4 +122,95 @@
 
     <!-- About -->
     <section id="about" class="about">
-        <h2 class="fade-in">Dlaczego BHpuls?</h2
+        <h2 class="fade-in">Dlaczego BHpuls?</h2>
+        <p class="fade-in">Od lat wspieramy firmy w zakresie bezpieczeństwa pracy, oferując szkolenia, audyty i kompleksowe doradztwo BHP. Nasz zespół ekspertów gwarantuje profesjonalizm i pełne bezpieczeństwo Twojej firmy.</p>
+        <div class="stats">
+            <div class="stat fade-in">
+                <div class="stat-number">10+</div>
+                <div>Lata doświadczenia</div>
+            </div>
+            <div class="stat fade-in">
+                <div class="stat-number">500+</div>
+                <div>Przeszkolonych osób</div>
+            </div>
+            <div class="stat fade-in">
+                <div class="stat-number">200+</div>
+                <div>Wdrożonych audytów</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="contact">
+        <h2 class="section-title fade-in">Skontaktuj się z nami</h2>
+        <div class="contact-content">
+            <div class="contact-info fade-in">
+                <div class="contact-item"><strong>Adres:</strong> ul. Przykładowa 1, 00-001 Warszawa</div>
+                <div class="contact-item"><strong>Email:</strong> kontakt@bhpuls.pl</div>
+                <div class="contact-item"><strong>Telefon:</strong> +48 123 456 789</div>
+            </div>
+            <form id="contact-form" class="contact-form fade-in">
+                <div class="form-group">
+                    <label for="name">Imię i nazwisko</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="_replyto" required>
+                </div>
+                <div class="form-group">
+                    <label for="company">Firma</label>
+                    <input type="text" id="company" name="company">
+                </div>
+                <div class="form-group">
+                    <label for="message">Wiadomość</label>
+                    <textarea id="message" name="message" rows="5" required></textarea>
+                </div>
+                <button type="submit" class="submit-btn">Wyślij wiadomość</button>
+                <p id="form-success" style="display:none; color:green; margin-top:1rem; font-weight:bold;">Dziękujemy za wiadomość! Skontaktujemy się z Tobą wkrótce.</p>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        &copy; 2025 BHpuls. Wszelkie prawa zastrzeżone.
+    </footer>
+
+    <script>
+        // Fade-in animation on scroll
+        const faders = document.querySelectorAll('.fade-in, .zoom-in');
+        const appearOptions = {threshold: 0.2, rootMargin: "0px 0px -50px 0px"};
+        const appearOnScroll = new IntersectionObserver(function(entries, appearOnScroll){
+            entries.forEach(entry => {
+                if(!entry.isIntersecting) return;
+                entry.target.classList.add('visible');
+                appearOnScroll.unobserve(entry.target);
+            });
+        }, appearOptions);
+        faders.forEach(fader => {appearOnScroll.observe(fader);});
+
+        // Form submission
+        const form = document.getElementById('contact-form');
+        const successMessage = document.getElementById('form-success');
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const formData = new FormData(form);
+            fetch('https://formspree.io/f/mjkodlno', {
+                method: 'POST',
+                body: formData,
+                headers: { 'Accept': 'application/json' }
+            }).then(response => {
+                if (response.ok) {
+                    successMessage.style.display = 'block';
+                    form.reset();
+                } else {
+                    alert('Ups! Coś poszło nie tak. Spróbuj ponownie.');
+                }
+            }).catch(error => {
+                alert('Ups! Coś poszło nie tak. Spróbuj ponownie.');
+            });
+        });
+    </script>
+</body>
+</html>
