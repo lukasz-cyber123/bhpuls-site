@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="pl">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>BHpuls - Profesjonalne Usługi BHP</title>
+
   <style>
     * {margin: 0; padding: 0; box-sizing: border-box;}
     html {scroll-behavior: smooth;}
@@ -51,12 +52,8 @@
     .list li {margin-bottom:.5rem;}
     .badge {display:inline-block; padding:.25rem .6rem; border-radius:999px; background:#ecfccb; color:#166534; font-weight:700; font-size:.8rem; margin-bottom:.75rem;}
 
-    /* Lead magnet */
+    /* Lead magnet container */
     .card {max-width: 900px; margin:0 auto; background:#fff; border:1px solid #e5e7eb; border-radius:16px; padding:1.5rem; box-shadow: 0 8px 20px rgba(0,0,0,.04);}
-    .form-inline {display:flex; gap:12px; flex-wrap:wrap; margin-top:12px;}
-    .input {flex:1 1 200px; padding:12px; border:1px solid #d1d5db; border-radius:10px; font-family:inherit;}
-    .btn {background:#0a0f1c; color:#fff; padding:12px 18px; border-radius:10px; border:none; cursor:pointer; font-weight:700;}
-    .muted {font-size:12px; opacity:.7; margin-top:8px;}
 
     /* About */
     .about {background: linear-gradient(135deg, #065f46, #064e3b); color: white; text-align: center;}
@@ -87,6 +84,18 @@
       .stats {gap: 1rem;}
     }
   </style>
+
+  <!-- Brevo form styles (z ich embedu) -->
+  <style>
+    @font-face {font-display:block; font-family:Roboto; src:url(https://assets.brevo.com/font/Roboto/Latin/normal/normal/7529907e9eaf8ebb5220c5f9850e3811.woff2) format("woff2"), url(https://assets.brevo.com/font/Roboto/Latin/normal/normal/25c678feafdc175a70922a116c9be3e7.woff) format("woff")}
+    @font-face {font-display:fallback; font-family:Roboto; font-weight:600; src:url(https://assets.brevo.com/font/Roboto/Latin/medium/normal/6e9caeeafb1f3491be3e32744bc30440.woff2) format("woff2"), url(https://assets.brevo.com/font/Roboto/Latin/medium/normal/71501f0d8d5aa95960f6475d5487d4c2.woff) format("woff")}
+    @font-face {font-display:fallback; font-family:Roboto; font-weight:700; src:url(https://assets.brevo.com/font/Roboto/Latin/bold/normal/3ef7cf158f310cf752d5ad08cd0e7e60.woff2) format("woff2"), url(https://assets.brevo.com/font/Roboto/Latin/bold/normal/ece3a1d82f18b60bcce0211725c476aa.woff) format("woff")}
+    #sib-container input::placeholder, #sib-container textarea::placeholder {text-align:left; font-family:Helvetica, sans-serif; color:#c0ccda;}
+    #sib-container a {text-decoration: underline; color:#2BB2FC;}
+  </style>
+  <link rel="stylesheet" href="https://sibforms.com/forms/end-form/build/sib-styles.css">
+  <link rel="preconnect" href="https://sibforms.com" crossorigin>
+  <link rel="preconnect" href="https://assets.brevo.com" crossorigin>
 </head>
 <body>
   <!-- Navbar -->
@@ -176,26 +185,77 @@
         </ul>
         <div style="display:flex; gap:12px; margin-top:12px; flex-wrap:wrap;">
           <a href="#contact" class="cta-button">Zapytaj o audyt</a>
-          <a href="#lead-magnet" class="cta-button">Program szkolenia (PDF)</a>
+          <a href="#lead-magnet" class="cta-button">Pobierz checklistę</a>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Lead magnet -->
+  <!-- Lead magnet (Brevo embedded) -->
   <section id="lead-magnet" class="section section-light">
-    <h2 class="section-title fade-in">Darmowy PDF: 10 najczęstszych błędów BHP w MŚP</h2>
-    <div class="card fade-in">
-      <p>Lista typowych niezgodności wykrywanych podczas kontroli, proste check-listy oraz wskazówki jak przygotować się do audytu ISO 45001.</p>
-      <form id="newsletter-form" class="form-inline" novalidate>
-        <input class="input" type="text" name="name" placeholder="Imię" required>
-        <input class="input" type="email" name="email" placeholder="E-mail firmowy" required>
-        <button class="btn" type="submit">Wyślij PDF</button>
-      </form>
-      <p class="muted">Wysyłając formularz, zapisujesz się do newslettera. Możesz wypisać się w każdej chwili.</p>
-      <p id="newsletter-success" style="display:none; color:#166534; font-weight:700; margin-top:10px;">
-        Dziękujemy! Sprawdź skrzynkę e-mail – wyślemy PDF oraz wskazówki.
-      </p>
+    <h2 class="section-title fade-in">Praktyczna lista kontrolna BHP</h2>
+    <div class="card fade-in" style="padding:0;">
+
+      <!-- Begin Brevo Form (HTML embed) -->
+      <div class="sib-form" style="text-align: center; background-color: transparent;">
+        <div id="sib-form-container" class="sib-form-container">
+
+          <div id="error-message" class="sib-form-message-panel" style="font-size:16px; text-align:left; font-family:Helvetica, sans-serif; color:#661d1d; background-color:#ffeded; border-radius:3px; border-color:#ff4949; max-width:540px;">
+            <div class="sib-form-message-panel__text sib-form-message-panel__text--center">
+              <span class="sib-form-message-panel__inner-text">Nie udało się zapisać Twojej subskrypcji. Spróbuj ponownie za chwilę.</span>
+            </div>
+          </div>
+
+          <div id="success-message" class="sib-form-message-panel" style="font-size:16px; text-align:left; font-family:Helvetica, sans-serif; color:#085229; background-color:#e7faf0; border-radius:3px; border-color:#13ce66; max-width:540px;">
+            <div class="sib-form-message-panel__text sib-form-message-panel__text--center">
+              <span class="sib-form-message-panel__inner-text">Twoja subskrypcja przebiegła pomyślnie! Sprawdź skrzynkę i potwierdź zapis, aby otrzymać checklistę BHP.</span>
+            </div>
+          </div>
+
+          <div id="sib-container" class="sib-container--large sib-container--vertical" style="text-align:center; background-color:#fff; max-width:540px; border-radius:12px; border:1px solid #C0CCD9;">
+            <form id="sib-form" method="POST" action="https://cfdfdaaf.sibforms.com/serve/MUIFAIaVECvP87TB84Xr1-ywWmkKRHmrFbNL09YIXMHygA7f_eVs6obpt0qj0AhqgcpIQgS_Uy3UR-V9DqaEW6dy2pvwM6X7y8krAooyvdePLjw8p4ND22MqbEL9ue086mXBx54jtoyr-S9YBga5zsPnTuMw-zlwTXZ3TtwQNSM_uxxlwUhOOceXzC8PnUdJI6GSLYclXTQW3pYY" data-type="subscription">
+              <div style="padding: 8px 0;">
+                <div class="sib-form-block" style="font-size:28px; text-align:center; font-weight:700; font-family:Helvetica, sans-serif; color:#064e3b;">
+                  <p>Praktyczna lista kontrolna BHP</p>
+                </div>
+              </div>
+
+              <div style="padding: 8px 0;">
+                <div class="sib-form-block" style="font-size:16px; text-align:left; font-family:Helvetica, sans-serif; color:#3C4858;">
+                  <div class="sib-text-form-block">
+                    <p>Sprawdź codziennie kluczowe elementy bezpieczeństwa pracy. Pobierz darmową listę i unikaj błędów podczas kontroli.</p>
+                  </div>
+                </div>
+              </div>
+
+              <div style="padding: 8px 0;">
+                <div class="sib-input sib-form-block">
+                  <div class="form__entry entry_block">
+                    <div class="entry__field">
+                      <input class="input" type="email" id="EMAIL" name="EMAIL" autocomplete="off" placeholder="E-mail firmowy" data-required="true" required />
+                    </div>
+                    <label class="entry__error entry__error--primary" style="font-size:14px; text-align:left; font-family:Helvetica, sans-serif; color:#661d1d; background-color:#ffeded; border-radius:3px; border-color:#ff4949;"></label>
+                    <label class="entry__specification" style="font-size:12px; text-align:left; font-family:Helvetica, sans-serif; color:#8390A4;">Podaj adres w formie: abc@xyz.com</label>
+                  </div>
+                </div>
+              </div>
+
+              <div style="padding: 8px 0;">
+                <div class="sib-form-block" style="text-align:center">
+                  <button class="sib-form-block__button sib-form-block__button-with-loader" style="font-size:16px; font-weight:700; font-family:Helvetica, sans-serif; color:#064e3b; background:linear-gradient(135deg,#facc15,#eab308); border-radius:50px; border:0; padding:.9rem 1.6rem;" type="submit">
+                    Pobierz PDF
+                  </button>
+                </div>
+              </div>
+
+              <input type="text" name="email_address_check" value="" class="input--hidden">
+              <input type="hidden" name="locale" value="pl">
+            </form>
+          </div>
+        </div>
+      </div>
+      <!-- End Brevo Form -->
+
     </div>
   </section>
 
@@ -204,18 +264,9 @@
     <h2 class="fade-in">Dlaczego BHpuls?</h2>
     <p class="fade-in">Od lat wspieramy firmy w zakresie bezpieczeństwa pracy, oferując szkolenia, audyty i kompleksowe doradztwo BHP. Nasz zespół ekspertów gwarantuje profesjonalizm i pełne bezpieczeństwo Twojej firmy.</p>
     <div class="stats">
-      <div class="stat fade-in">
-        <div class="stat-number">10+</div>
-        <div>Lata doświadczenia</div>
-      </div>
-      <div class="stat fade-in">
-        <div class="stat-number">500+</div>
-        <div>Przeszkolonych osób</div>
-      </div>
-      <div class="stat fade-in">
-        <div class="stat-number">200+</div>
-        <div>Wdrożonych audytów</div>
-      </div>
+      <div class="stat fade-in"><div class="stat-number">10+</div><div>Lata doświadczenia</div></div>
+      <div class="stat fade-in"><div class="stat-number">500+</div><div>Przeszkolonych osób</div></div>
+      <div class="stat fade-in"><div class="stat-number">200+</div><div>Wdrożonych audytów</div></div>
     </div>
   </section>
 
@@ -246,9 +297,7 @@
           <textarea id="message" name="message" rows="5" required></textarea>
         </div>
         <button type="submit" class="submit-btn">Wyślij wiadomość</button>
-        <p id="form-success" style="display:none; color:green; margin-top:1rem; font-weight:bold;">
-          Dziękujemy za wiadomość! Skontaktujemy się z Tobą wkrótce.
-        </p>
+        <p id="form-success" style="display:none; color:green; margin-top:1rem; font-weight:bold;">Dziękujemy za wiadomość! Skontaktujemy się z Tobą wkrótce.</p>
       </form>
     </div>
   </section>
@@ -258,6 +307,7 @@
     &copy; 2025 BHpuls. Wszelkie prawa zastrzeżone.
   </footer>
 
+  <!-- Scripts -->
   <script>
     // Animacje
     const faders = document.querySelectorAll('.fade-in, .zoom-in');
@@ -271,7 +321,7 @@
     }, appearOptions);
     faders.forEach(f => appearOnScroll.observe(f));
 
-    // Formularz kontaktowy – Formspree
+    // Formularz kontaktowy – Formspree (zostaje bez zmian)
     const form = document.getElementById('contact-form');
     const successMessage = document.getElementById('form-success');
     form.addEventListener('submit', async (e) => {
@@ -287,24 +337,9 @@
         else { alert('Ups! Coś poszło nie tak. Spróbuj ponownie.'); }
       } catch(err){ alert('Ups! Coś poszło nie tak. Spróbuj ponownie.'); }
     });
-
-    // Newsletter – tymczasowo także przez Formspree (ten sam endpoint)
-    const nForm = document.getElementById('newsletter-form');
-    const nSuccess = document.getElementById('newsletter-success');
-    nForm.addEventListener('submit', async (e) => {
-      e.preventDefault();
-      const data = new FormData(nForm);
-      data.append('_subject', 'Zapis do newslettera / prośba o PDF');
-      try {
-        const resp = await fetch('https://formspree.io/f/mjkodlno', {
-          method: 'POST',
-          body: data,
-          headers: { 'Accept': 'application/json' }
-        });
-        if (resp.ok) { nSuccess.style.display = 'block'; nForm.reset(); }
-        else { alert('Nie udało się wysłać. Spróbuj ponownie.'); }
-      } catch(err){ alert('Nie udało się wysłać. Spróbuj ponownie.'); }
-    });
   </script>
+
+  <!-- Brevo embed script (wymagany przez formularz) -->
+  <script defer src="https://sibforms.com/forms/end-form/build/main.js"></script>
 </body>
 </html>
