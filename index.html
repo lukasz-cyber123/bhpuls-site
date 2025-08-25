@@ -3,343 +3,284 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>BHpuls - Profesjonalne Usługi BHP</title>
+  <title>BHpuls – Profesjonalne Usługi BHP</title>
+  <meta name="description" content="Szkolenia BHP, audyty ISO 14001 i ISO 45001, dokumentacja i doradztwo. BHpuls – wsparcie dla firm w zakresie bezpieczeństwa pracy."/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
 
   <style>
-    * {margin: 0; padding: 0; box-sizing: border-box;}
-    html {scroll-behavior: smooth;}
-    body {font-family: 'Segoe UI', Tahoma, sans-serif; line-height: 1.6; color: #333; overflow-x: hidden; background:#fff;}
-
-    /* Animations */
-    .fade-in {opacity: 0; transform: translateY(30px); transition: all 0.8s ease;}
-    .fade-in.visible {opacity: 1; transform: translateY(0);}
-    .zoom-in {opacity: 0; transform: scale(0.98); transition: all 0.6s ease;}
-    .zoom-in.visible {opacity: 1; transform: scale(1);}
-
-    /* Header */
-    .navbar {background: linear-gradient(135deg, #064e3b, #065f46); padding: 1rem 0; position: fixed; width: 100%; top: 0; z-index: 1000; backdrop-filter: blur(10px); transition: all 0.3s ease;}
-    .nav-container {max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 0 2rem;}
-    .logo {display: flex; align-items: center; gap: 1rem; text-decoration: none;}
-    .logo img {height: 70px; width: 140px;}
-    .nav-menu {display: flex; list-style: none; gap: 2rem;}
-    .nav-link {color: white; text-decoration: none; font-weight: 500; position: relative; transition: 0.3s;}
-    .nav-link:hover {color: #facc15;}
-
-    /* Hero */
-    .hero {background: linear-gradient(135deg, #064e3b, #065f46, #0f766e); min-height: 100vh; display: flex; align-items: center; justify-content: center; text-align: center; color: white; position: relative; overflow: hidden; padding: 0 1.5rem;}
-    .hero h1 {font-size: 3.0rem; font-weight: bold; margin-bottom: 1rem;}
-    .hero p {font-size: 1.2rem; margin-bottom: 2rem; opacity:.95;}
-    .cta-buttons {display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;}
-    .cta-button {background: linear-gradient(135deg, #facc15, #eab308); color: #064e3b; padding: 1rem 2rem; border-radius: 50px; font-size: 1.1rem; font-weight: bold; text-decoration: none; box-shadow: 0 8px 20px rgba(0,0,0,0.2); transition: 0.3s; display: inline-block;}
-    .cta-button:hover {transform: scale(1.05); box-shadow: 0 12px 30px rgba(0,0,0,0.3);}
-
-    /* Sections */
-    .section {padding: 6rem 2rem;}
-    .section-light {background:#f8fafc;}
-    .section-title {text-align: center; font-size: 2.2rem; font-weight: bold; color: #064e3b; margin-bottom: 3rem; position: relative;}
-    .section-title::after {content: ''; position: absolute; bottom: -10px; left: 50%; transform: translateX(-50%); width: 80px; height: 4px; background: linear-gradient(135deg, #facc15, #eab308); border-radius: 2px;}
-
-    /* Services */
-    .services-grid {display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 2rem; max-width: 1200px; margin: 0 auto;}
-    .service-card {background: white; padding: 2rem; border-radius: 20px; border: 1px solid #e2e8f0; text-align: center; box-shadow: 0 8px 25px rgba(0,0,0,0.08); transition: 0.3s;}
-    .service-card:hover {transform: translateY(-6px); box-shadow: 0 15px 35px rgba(0,0,0,0.12);}
-    .service-icon {width: 96px; height: 96px; margin: 0 auto 1rem; display: block;}
-
-    /* ISO section */
-    .iso-wrap {max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1.2fr 1fr; gap: 2rem; align-items:center;}
-    .iso-box {background:#fff; border:1px solid #e5e7eb; border-radius:16px; padding:1.5rem;}
-    .list {margin:0; padding-left:1.25rem;}
-    .list li {margin-bottom:.5rem;}
-    .badge {display:inline-block; padding:.25rem .6rem; border-radius:999px; background:#ecfccb; color:#166534; font-weight:700; font-size:.8rem; margin-bottom:.75rem;}
-
-    /* Lead magnet container */
-    .card {max-width: 900px; margin:0 auto; background:#fff; border:1px solid #e5e7eb; border-radius:16px; padding:1.5rem; box-shadow: 0 8px 20px rgba(0,0,0,.04);}
-
-    /* About */
-    .about {background: linear-gradient(135deg, #065f46, #064e3b); color: white; text-align: center;}
-    .about h2 {font-size: 2.2rem; margin-bottom: 1.2rem;}
-    .about p {max-width: 800px; margin: 0 auto 1.2rem; color: #d1fae5;}
-    .stats {display: flex; justify-content: center; gap: 2rem; margin-top: 1.5rem; flex-wrap: wrap;}
-    .stat {background: rgba(255,255,255,0.08); padding: 1.2rem 1.6rem; border-radius: 14px; min-width: 160px;}
-    .stat-number {font-size: 2.2rem; font-weight: bold; color: #facc15;}
-
-    /* Contact */
-    .contact-content {display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; max-width: 1200px; margin: 0 auto;}
-    .contact-info, .contact-form {background: white; padding: 2rem; border-radius: 20px; box-shadow: 0 8px 25px rgba(0,0,0,0.08);}
-    .contact-item {margin-bottom: 1rem;}
-    .form-group {margin-bottom: 1rem;}
-    .form-group label {display:block; margin-bottom: .4rem; font-weight: 600;}
-    .form-group input, .form-group textarea {width: 100%; padding: 0.75rem; border: 1px solid #ddd; border-radius: 10px; font-family: inherit;}
-    .submit-btn {background: linear-gradient(135deg, #facc15, #eab308); border: none; padding: 1rem; border-radius: 10px; font-weight: bold; cursor: pointer; width: 100%; transition: 0.3s;}
-    .submit-btn:hover {background: linear-gradient(135deg, #eab308, #ca8a04);}
-
-    /* Footer */
-    .footer {background: #064e3b; color: white; text-align: center; padding: 2rem;}
-
-    /* Responsive */
-    @media (max-width: 1100px){ .iso-wrap{grid-template-columns:1fr} }
-    @media (max-width: 992px) {.hero h1{font-size:2.4rem}.hero p{font-size:1.05rem}}
-    @media (max-width: 768px){
-      .contact-content {grid-template-columns: 1fr;}
-      .stats {gap: 1rem;}
+    :root{
+      --green-900:#064e3b;
+      --green-800:#065f46;
+      --green-700:#0f766e;
+      --accent:#facc15;
+      --accent-700:#eab308;
+      --text:#1f2937;
+      --muted:#6b7280;
+      --bg:#ffffff;
+      --bg-alt:#f8fafc;
+      --card:#ffffff;
+      --border:#e5e7eb;
+      --shadow:0 10px 30px rgba(0,0,0,.08);
     }
-  </style>
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0}
+    body{
+      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,"Helvetica Neue",Arial,"Noto Sans",sans-serif;
+      color:var(--text);
+      background:var(--bg);
+      line-height:1.6;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+    }
 
-  <!-- Brevo form styles (z ich embedu) -->
-  <style>
-    @font-face {font-display:block; font-family:Roboto; src:url(https://assets.brevo.com/font/Roboto/Latin/normal/normal/7529907e9eaf8ebb5220c5f9850e3811.woff2) format("woff2"), url(https://assets.brevo.com/font/Roboto/Latin/normal/normal/25c678feafdc175a70922a116c9be3e7.woff) format("woff")}
-    @font-face {font-display:fallback; font-family:Roboto; font-weight:600; src:url(https://assets.brevo.com/font/Roboto/Latin/medium/normal/6e9caeeafb1f3491be3e32744bc30440.woff2) format("woff2"), url(https://assets.brevo.com/font/Roboto/Latin/medium/normal/71501f0d8d5aa95960f6475d5487d4c2.woff) format("woff")}
-    @font-face {font-display:fallback; font-family:Roboto; font-weight:700; src:url(https://assets.brevo.com/font/Roboto/Latin/bold/normal/3ef7cf158f310cf752d5ad08cd0e7e60.woff2) format("woff2"), url(https://assets.brevo.com/font/Roboto/Latin/bold/normal/ece3a1d82f18b60bcce0211725c476aa.woff) format("woff")}
-    #sib-container input::placeholder, #sib-container textarea::placeholder {text-align:left; font-family:Helvetica, sans-serif; color:#c0ccda;}
-    #sib-container a {text-decoration: underline; color:#2BB2FC;}
+    /* NAV */
+    .navbar{
+      position:sticky; top:0; z-index:50;
+      width:100%; backdrop-filter: blur(10px);
+      background:linear-gradient(135deg,var(--green-900),var(--green-800));
+      border-bottom:1px solid rgba(255,255,255,.08);
+    }
+    .nav-container{
+      max-width:1100px; margin:0 auto;
+      padding:12px 20px; display:flex; align-items:center; justify-content:space-between;
+    }
+    .logo{display:flex; align-items:center; gap:12px; text-decoration:none}
+    .logo img{height:56px}
+    .logo span{color:#fff; font-weight:800; letter-spacing:.4px}
+    .nav-menu{display:flex; gap:22px; list-style:none; margin:0; padding:0}
+    .nav-link{color:#fff; text-decoration:none; font-weight:600; opacity:.95}
+    .nav-link:hover{color:var(--accent)}
+    .cta-top{
+      background:linear-gradient(135deg,var(--accent),var(--accent-700));
+      color:#064e3b; font-weight:800; padding:10px 16px; border-radius:9999px; text-decoration:none;
+    }
+
+    /* SECTIONS */
+    section{scroll-margin-top:84px}
+    .max{max-width:1100px; margin:0 auto; padding:0 20px}
+
+    /* HERO */
+    .hero{
+      background:linear-gradient(135deg,var(--green-900),var(--green-800),var(--green-700));
+      color:#fff; padding:90px 20px 96px; text-align:center;
+    }
+    .hero h1{font-size:clamp(28px,4.2vw,44px); margin:0 0 10px; font-weight:800}
+    .hero p{font-size:clamp(16px,2.3vw,18px); opacity:.95; margin:0 0 26px}
+    .hero .cta-button{
+      display:inline-block; background:linear-gradient(135deg,var(--accent),var(--accent-700));
+      color:#064e3b; padding:14px 22px; border-radius:999px; text-decoration:none; font-weight:800;
+      box-shadow:0 12px 30px rgba(0,0,0,.20);
+    }
+    .hero .cta-button:hover{transform:translateY(-1px)}
+    .hero .sub{opacity:.9; margin-top:12px; font-size:14px}
+
+    /* CARDS / GENERIC */
+    .section-title{
+      text-align:center; font-size:clamp(24px,3.8vw,32px); font-weight:800; color:var(--green-900);
+      margin:64px 0 28px; position:relative;
+    }
+    .section-title::after{
+      content:""; display:block; width:72px; height:4px; border-radius:2px; margin:10px auto 0;
+      background:linear-gradient(135deg,var(--accent),var(--accent-700));
+    }
+    .grid{
+      display:grid; gap:18px;
+      grid-template-columns: repeat(12, 1fr);
+    }
+    .card{
+      background:var(--card); border:1px solid var(--border); border-radius:18px; padding:20px;
+      box-shadow:var(--shadow);
+    }
+
+    /* SERVICES */
+    .services{background:var(--bg-alt); padding:64px 0}
+    .services .item{grid-column: span 12}
+    @media (min-width:720px){ .services .item{grid-column: span 4} }
+
+    /* ABOUT */
+    .about{
+      background:linear-gradient(135deg,var(--green-800),var(--green-900));
+      color:#fff; padding:64px 0; text-align:center;
+    }
+    .about p{max-width:800px; margin:0 auto 20px; color:#d1fae5}
+    .stats{display:flex; gap:14px; justify-content:center; margin-top:20px; flex-wrap:wrap}
+    .stat{background:rgba(255,255,255,.08); padding:16px 22px; border-radius:14px}
+    .stat .n{font-size:28px; font-weight:800; color:var(--accent)}
+
+    /* LEAD MAGNET (Brevo iframe) */
+    .lead{background:var(--bg); padding:64px 0}
+    .iframe-wrap{
+      max-width:760px; margin:0 auto; border:1px solid var(--border); border-radius:18px; overflow:hidden;
+      box-shadow:var(--shadow); background:#fff; padding:18px;
+    }
+    .iframe-wrap iframe{width:100%; height:450px; border:0}
+
+    /* CONTACT */
+    .contact{background:var(--bg-alt); padding:64px 0}
+    .contact .grid > div{grid-column: span 12}
+    @media (min-width:900px){
+      .contact .grid > div:nth-child(1){grid-column: span 5}
+      .contact .grid > div:nth-child(2){grid-column: span 7}
+    }
+    .contact .info p{margin:6px 0; color:var(--muted)}
+    .form .row{display:grid; gap:12px}
+    .form input,.form textarea{
+      width:100%; padding:12px 14px; border:1px solid var(--border); border-radius:10px; font:inherit
+    }
+    .form button{
+      padding:14px; border:0; border-radius:10px; cursor:pointer; font-weight:800;
+      background:linear-gradient(135deg,var(--accent),var(--accent-700)); color:#064e3b
+    }
+    .muted{color:var(--muted); font-size:14px}
+
+    /* FOOTER */
+    .footer{background:var(--green-900); color:#fff; text-align:center; padding:20px}
+
+    /* simple fade-in */
+    .fade{opacity:0; transform: translateY(16px); transition:.6s}
+    .fade.show{opacity:1; transform:none}
   </style>
-  <link rel="stylesheet" href="https://sibforms.com/forms/end-form/build/sib-styles.css">
-  <link rel="preconnect" href="https://sibforms.com" crossorigin>
-  <link rel="preconnect" href="https://assets.brevo.com" crossorigin>
 </head>
 <body>
-  <!-- Navbar -->
+
+  <!-- NAVBAR -->
   <nav class="navbar">
     <div class="nav-container">
-      <a href="#home" class="logo zoom-in">
-        <img src="logo-bhpuls.png" alt="BHpuls Logo" width="140" height="70" fetchpriority="high" decoding="async">
+      <a class="logo" href="#home" aria-label="BHpuls">
+        <img src="logo-bhpuls.png" alt="BHpuls – logo">
+        <span>BHpuls</span>
       </a>
       <ul class="nav-menu">
-        <li><a href="#home" class="nav-link">Start</a></li>
-        <li><a href="#services" class="nav-link">Usługi</a></li>
-        <li><a href="#iso" class="nav-link">Szkolenia</a></li>
-        <li><a href="#about" class="nav-link">O nas</a></li>
-        <li><a href="#contact" class="nav-link">Kontakt</a></li>
+        <li><a class="nav-link" href="#services">Usługi</a></li>
+        <li><a class="nav-link" href="#about">O nas</a></li>
+        <li><a class="nav-link" href="#lead">Checklista</a></li>
+        <li><a class="nav-link" href="#contact">Kontakt</a></li>
       </ul>
+      <a class="cta-top" href="#lead">Pobierz checklistę</a>
     </div>
   </nav>
 
-  <!-- Hero -->
-  <section id="home" class="hero">
-    <div class="fade-in">
-      <h1>Bezpieczeństwo w Twoich Rękach</h1>
-      <p>Profesjonalne usługi BHP oraz szkolenia i audyty ISO – szybko, zgodnie z przepisami i bez zbędnego stresu.</p>
-      <div class="cta-buttons">
-        <a href="#contact" class="cta-button">Umów bezpłatną konsultację</a>
-        <a href="#services" class="cta-button">Zobacz szkolenia</a>
-      </div>
+  <!-- HERO -->
+  <header id="home" class="hero">
+    <div class="max">
+      <h1>Bezpieczeństwo pracy bez zaskoczeń</h1>
+      <p>Szkolenia BHP, audyty ISO 14001/45001, dokumentacja i wdrożenia. Działamy skutecznie i po ludzku.</p>
+      <a class="cta-button" href="#lead">Pobierz checklistę (PDF)</a>
+      <div class="sub">Darmowy materiał – praktyczna lista kontrolna do codziennych kontroli BHP.</div>
     </div>
-  </section>
+  </header>
 
-  <!-- Services -->
-  <section id="services" class="section section-light">
-    <h2 class="section-title fade-in">Nasze Usługi</h2>
-    <div class="services-grid">
-      <div class="service-card fade-in">
-        <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="#0f766e" stroke-width="1.6">
-          <rect x="3" y="4" width="18" height="14" rx="2" ry="2"></rect><path d="M7 8h10M7 12h7M7 16h5"></path>
-        </svg>
-        <h3>Szkolenia BHP</h3>
-        <p>Kompleksowe szkolenia wstępne i okresowe BHP – stacjonarnie i online.</p>
-      </div>
-      <div class="service-card fade-in">
-        <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="#0f766e" stroke-width="1.6">
-          <rect x="4" y="3" width="16" height="18" rx="2"></rect><path d="M8 9h8M8 13h8M8 17h5"></path><path d="M7 13l1 1 3-3" stroke="#f59e0b"></path>
-        </svg>
-        <h3>Audyty bezpieczeństwa</h3>
-        <p>Oceny ryzyka, przeglądy BHP, listy kontrolne i rekomendacje usprawnień.</p>
-      </div>
-      <div class="service-card fade-in">
-        <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="#0f766e" stroke-width="1.6">
-          <path d="M12 2l7 4v6c0 5-3.5 9-7 10-3.5-1-7-5-7-10V6l7-4z"></path><path d="M9 12h6" stroke="#f59e0b"></path>
-        </svg>
-        <h3>Doradztwo i dokumentacja</h3>
-        <p>Procedury, instrukcje, rejestry wypadków, instruktaże stanowiskowe.</p>
-      </div>
-      <div class="service-card fade-in">
-        <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="#0f766e" stroke-width="1.6">
-          <path d="M6 2h8l4 4v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2z"></path><path d="M14 2v4h4"></path><path d="M8 12h8M8 16h8"></path>
-        </svg>
-        <h3>Outsourcing BHP</h3>
-        <p>Stała obsługa BHP dla firm – pakiety abonamentowe dopasowane do potrzeb.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- ISO -->
-  <section id="iso" class="section">
-    <h2 class="section-title fade-in">ISO 14001 / ISO 45001 – Audyty i Szkolenia</h2>
-    <div class="iso-wrap">
-      <div class="iso-box fade-in">
-        <span class="badge">Dla kogo?</span>
-        <p>Produkcja, logistyka, usługi, administracja. Przygotowujemy do certyfikacji i utrzymania systemu.</p>
-        <ul class="list">
-          <li>Szkolenia audytorów wewnętrznych (2×6h online + test + certyfikat)</li>
-          <li>Audyty zgodności z ISO 14001 / 45001 i przeglądy środowiskowe</li>
-          <li>Identyfikacja zagrożeń i ocena ryzyk, wskaźniki i cele</li>
-          <li>Przygotowanie dokumentacji i procedur</li>
-        </ul>
-      </div>
-      <div class="iso-box fade-in">
-        <span class="badge">Co zyskasz?</span>
-        <ul class="list">
-          <li>Gotowość do audytu zewnętrznego bez niespodzianek</li>
-          <li>Usprawnienie procesów i redukcja niezgodności</li>
-          <li>Lepsze bezpieczeństwo pracy i wyniki środowiskowe</li>
-          <li>Wizerunek odpowiedzialnej, zgodnej firmy</li>
-        </ul>
-        <div style="display:flex; gap:12px; margin-top:12px; flex-wrap:wrap;">
-          <a href="#contact" class="cta-button">Zapytaj o audyt</a>
-          <a href="#lead-magnet" class="cta-button">Pobierz checklistę</a>
+  <!-- USŁUGI -->
+  <section id="services" class="services">
+    <div class="max">
+      <h2 class="section-title fade">Nasze usługi</h2>
+      <div class="grid">
+        <div class="card item fade">
+          <h3>Szkolenia BHP</h3>
+          <p>Szkolenia wstępne i okresowe – biurowe, stanowiskowe, kadra zarządzająca. Materiały i zaświadczenia w cenie.</p>
+        </div>
+        <div class="card item fade">
+          <h3>Audyty i wdrożenia</h3>
+          <p>ISO 45001 oraz ISO 14001 – audyty, plany działań, wsparcie przy certyfikacji i utrzymaniu systemów.</p>
+        </div>
+        <div class="card item fade">
+          <h3>Dokumentacja</h3>
+          <p>Oceny ryzyka, instrukcje stanowiskowe, rejestry i procedury. Porządek w dokumentach bez bólu.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Lead magnet (Brevo embedded) -->
-  <section id="lead-magnet" class="section section-light">
-    <h2 class="section-title fade-in">Praktyczna lista kontrolna BHP</h2>
-    <div class="card fade-in" style="padding:0;">
+  <!-- O NAS -->
+  <section id="about" class="about">
+    <div class="max">
+      <h2 class="section-title" style="color:#fff">Dlaczego BHpuls?</h2>
+      <p class="fade">Łączymy praktykę z przystępną komunikacją. Wspieramy firmy w zakresie BHP i ISO – od szybkich konsultacji po pełne wdrożenia.</p>
+      <div class="stats">
+        <div class="stat fade"><div class="n">10+</div>lat doświadczenia</div>
+        <div class="stat fade"><div class="n">500+</div>przeszkolonych osób</div>
+        <div class="stat fade"><div class="n">200+</div>zrealizowanych audytów</div>
+      </div>
+    </div>
+  </section>
 
-      <!-- Begin Brevo Form (HTML embed) -->
-      <div class="sib-form" style="text-align: center; background-color: transparent;">
-        <div id="sib-form-container" class="sib-form-container">
+  <!-- LEAD MAGNET – Brevo iframe -->
+  <section id="lead" class="lead">
+    <div class="max">
+      <h2 class="section-title fade">Praktyczna lista kontrolna BHP</h2>
+      <p class="muted" style="text-align:center;margin:-4px 0 18px">Zapisz się i odbierz darmową checklistę (PDF). Sprawdzisz codziennie kluczowe elementy bezpieczeństwa pracy.</p>
 
-          <div id="error-message" class="sib-form-message-panel" style="font-size:16px; text-align:left; font-family:Helvetica, sans-serif; color:#661d1d; background-color:#ffeded; border-radius:3px; border-color:#ff4949; max-width:540px;">
-            <div class="sib-form-message-panel__text sib-form-message-panel__text--center">
-              <span class="sib-form-message-panel__inner-text">Nie udało się zapisać Twojej subskrypcji. Spróbuj ponownie za chwilę.</span>
+      <div class="iframe-wrap fade" aria-label="Formularz zapisu – Brevo">
+        <!-- 🔽 TU NIC NIE ZMIENIAJ – to gotowy iframe z Brevo. W razie aktualizacji podmień tylko src. -->
+        <iframe
+          src="https://cfdfdaaf.sibforms.com/serve/MUIFAAKxwopLFxXJuOuP81SpB6d1i1GBFVZ7VooH1YsCrC1fu5xeV5QMZG9IWVoBHBNFMLNdzwW6WlntRMHA51VN9_Fenw3T97EMsneUqcqTOkkVPGGnNC4d0GrdbC4dDYpKaFSP_6XS8tDHKChlM68QG6Il6htyLPwiCdEqXdSm2C_qebn13Mv_ek0NdDvjpe_uSZGY84D9jSyn"
+          frameborder="0" scrolling="auto" allowfullscreen
+          title="Formularz zapisu – lista kontrolna BHP">
+        </iframe>
+      </div>
+    </div>
+  </section>
+
+  <!-- KONTAKT -->
+  <section id="contact" class="contact">
+    <div class="max">
+      <h2 class="section-title fade">Skontaktuj się</h2>
+
+      <div class="grid">
+        <!-- INFO – tylko email (zgodnie z prośbą) -->
+        <div class="card info fade">
+          <h3>Napisz do nas</h3>
+          <p class="muted">Masz pytania o szkolenia lub audyty? Odpowiemy tego samego dnia roboczego.</p>
+          <p><strong>E-mail:</strong> <a href="mailto:kontakt@bhpuls.pl">kontakt@bhpuls.pl</a></p>
+        </div>
+
+        <!-- FORM – Formspree zostaje jako prosty kanał zapytań -->
+        <div class="card form fade">
+          <form id="contact-form" action="https://formspree.io/f/mjkodlno" method="POST">
+            <div class="row">
+              <input type="text" name="name" placeholder="Imię i nazwisko" required>
+              <input type="email" name="_replyto" placeholder="E-mail" required>
             </div>
-          </div>
-
-          <div id="success-message" class="sib-form-message-panel" style="font-size:16px; text-align:left; font-family:Helvetica, sans-serif; color:#085229; background-color:#e7faf0; border-radius:3px; border-color:#13ce66; max-width:540px;">
-            <div class="sib-form-message-panel__text sib-form-message-panel__text--center">
-              <span class="sib-form-message-panel__inner-text">Twoja subskrypcja przebiegła pomyślnie! Sprawdź skrzynkę i potwierdź zapis, aby otrzymać checklistę BHP.</span>
-            </div>
-          </div>
-
-          <div id="sib-container" class="sib-container--large sib-container--vertical" style="text-align:center; background-color:#fff; max-width:540px; border-radius:12px; border:1px solid #C0CCD9;">
-            <form id="sib-form" method="POST" action="https://cfdfdaaf.sibforms.com/serve/MUIFAIaVECvP87TB84Xr1-ywWmkKRHmrFbNL09YIXMHygA7f_eVs6obpt0qj0AhqgcpIQgS_Uy3UR-V9DqaEW6dy2pvwM6X7y8krAooyvdePLjw8p4ND22MqbEL9ue086mXBx54jtoyr-S9YBga5zsPnTuMw-zlwTXZ3TtwQNSM_uxxlwUhOOceXzC8PnUdJI6GSLYclXTQW3pYY" data-type="subscription">
-              <div style="padding: 8px 0;">
-                <div class="sib-form-block" style="font-size:28px; text-align:center; font-weight:700; font-family:Helvetica, sans-serif; color:#064e3b;">
-                  <p>Praktyczna lista kontrolna BHP</p>
-                </div>
-              </div>
-
-              <div style="padding: 8px 0;">
-                <div class="sib-form-block" style="font-size:16px; text-align:left; font-family:Helvetica, sans-serif; color:#3C4858;">
-                  <div class="sib-text-form-block">
-                    <p>Sprawdź codziennie kluczowe elementy bezpieczeństwa pracy. Pobierz darmową listę i unikaj błędów podczas kontroli.</p>
-                  </div>
-                </div>
-              </div>
-
-              <div style="padding: 8px 0;">
-                <div class="sib-input sib-form-block">
-                  <div class="form__entry entry_block">
-                    <div class="entry__field">
-                      <input class="input" type="email" id="EMAIL" name="EMAIL" autocomplete="off" placeholder="E-mail firmowy" data-required="true" required />
-                    </div>
-                    <label class="entry__error entry__error--primary" style="font-size:14px; text-align:left; font-family:Helvetica, sans-serif; color:#661d1d; background-color:#ffeded; border-radius:3px; border-color:#ff4949;"></label>
-                    <label class="entry__specification" style="font-size:12px; text-align:left; font-family:Helvetica, sans-serif; color:#8390A4;">Podaj adres w formie: abc@xyz.com</label>
-                  </div>
-                </div>
-              </div>
-
-              <div style="padding: 8px 0;">
-                <div class="sib-form-block" style="text-align:center">
-                  <button class="sib-form-block__button sib-form-block__button-with-loader" style="font-size:16px; font-weight:700; font-family:Helvetica, sans-serif; color:#064e3b; background:linear-gradient(135deg,#facc15,#eab308); border-radius:50px; border:0; padding:.9rem 1.6rem;" type="submit">
-                    Pobierz PDF
-                  </button>
-                </div>
-              </div>
-
-              <input type="text" name="email_address_check" value="" class="input--hidden">
-              <input type="hidden" name="locale" value="pl">
-            </form>
-          </div>
+            <textarea name="message" rows="5" placeholder="Wiadomość" required></textarea>
+            <button type="submit">Wyślij wiadomość</button>
+            <p id="form-success" class="muted" style="display:none; margin-top:10px; color:#065f46; font-weight:600;">
+              Dziękujemy! Skontaktujemy się wkrótce.
+            </p>
+          </form>
         </div>
       </div>
-      <!-- End Brevo Form -->
-
     </div>
   </section>
 
-  <!-- About -->
-  <section id="about" class="section about">
-    <h2 class="fade-in">Dlaczego BHpuls?</h2>
-    <p class="fade-in">Od lat wspieramy firmy w zakresie bezpieczeństwa pracy, oferując szkolenia, audyty i kompleksowe doradztwo BHP. Nasz zespół ekspertów gwarantuje profesjonalizm i pełne bezpieczeństwo Twojej firmy.</p>
-    <div class="stats">
-      <div class="stat fade-in"><div class="stat-number">10+</div><div>Lata doświadczenia</div></div>
-      <div class="stat fade-in"><div class="stat-number">500+</div><div>Przeszkolonych osób</div></div>
-      <div class="stat fade-in"><div class="stat-number">200+</div><div>Wdrożonych audytów</div></div>
-    </div>
-  </section>
-
-  <!-- Contact -->
-  <section id="contact" class="section section-light">
-    <h2 class="section-title fade-in">Skontaktuj się z nami</h2>
-    <div class="contact-content">
-      <div class="contact-info fade-in">
-        <div class="contact-item"><strong>Adres:</strong> ul. Przykładowa 1, 00-001 Warszawa</div>
-        <div class="contact-item"><strong>Email:</strong> kontakt@bhpuls.pl</div>
-        <div class="contact-item"><strong>Telefon:</strong> +48 123 456 789</div>
-      </div>
-      <form id="contact-form" class="contact-form fade-in">
-        <div class="form-group">
-          <label for="name">Imię i nazwisko</label>
-          <input type="text" id="name" name="name" required>
-        </div>
-        <div class="form-group">
-          <label for="email">Email</label>
-          <input type="email" id="email" name="_replyto" required>
-        </div>
-        <div class="form-group">
-          <label for="company">Firma</label>
-          <input type="text" id="company" name="company">
-        </div>
-        <div class="form-group">
-          <label for="message">Wiadomość</label>
-          <textarea id="message" name="message" rows="5" required></textarea>
-        </div>
-        <button type="submit" class="submit-btn">Wyślij wiadomość</button>
-        <p id="form-success" style="display:none; color:green; margin-top:1rem; font-weight:bold;">Dziękujemy za wiadomość! Skontaktujemy się z Tobą wkrótce.</p>
-      </form>
-    </div>
-  </section>
-
-  <!-- Footer -->
   <footer class="footer">
-    &copy; 2025 BHpuls. Wszelkie prawa zastrzeżone.
+    © <span id="y"></span> BHpuls. Wszelkie prawa zastrzeżone.
   </footer>
 
-  <!-- Scripts -->
   <script>
-    // Animacje
-    const faders = document.querySelectorAll('.fade-in, .zoom-in');
-    const appearOptions = {threshold: 0.2, rootMargin: "0px 0px -50px 0px"};
-    const appearOnScroll = new IntersectionObserver((entries, obs) => {
-      entries.forEach(entry => {
-        if(!entry.isIntersecting) return;
-        entry.target.classList.add('visible');
-        obs.unobserve(entry.target);
-      });
-    }, appearOptions);
-    faders.forEach(f => appearOnScroll.observe(f));
+    // Rok w stopce
+    document.getElementById('y').textContent = new Date().getFullYear();
 
-    // Formularz kontaktowy – Formspree (zostaje bez zmian)
+    // Delikatne "fade in"
+    const items = document.querySelectorAll('.fade');
+    const obs = new IntersectionObserver(entries=>{
+      entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('show'); obs.unobserve(e.target); }});
+    },{threshold:.16});
+    items.forEach(el=>obs.observe(el));
+
+    // Obsługa sukcesu Formspree (bez przeładowania)
     const form = document.getElementById('contact-form');
-    const successMessage = document.getElementById('form-success');
-    form.addEventListener('submit', async (e) => {
-      e.preventDefault();
-      const formData = new FormData(form);
-      try {
-        const resp = await fetch('https://formspree.io/f/mjkodlno', {
-          method: 'POST',
-          body: formData,
-          headers: { 'Accept': 'application/json' }
-        });
-        if (resp.ok) { successMessage.style.display = 'block'; form.reset(); }
+    const ok = document.getElementById('form-success');
+    if(form){
+      form.addEventListener('submit', async (ev)=>{
+        ev.preventDefault();
+        const data = new FormData(form);
+        const r = await fetch(form.action, { method:'POST', body:data, headers:{ 'Accept':'application/json' }});
+        if(r.ok){ ok.style.display='block'; form.reset(); }
         else { alert('Ups! Coś poszło nie tak. Spróbuj ponownie.'); }
-      } catch(err){ alert('Ups! Coś poszło nie tak. Spróbuj ponownie.'); }
-    });
+      });
+    }
   </script>
-
-  <!-- Brevo embed script (wymagany przez formularz) -->
-  <script defer src="https://sibforms.com/forms/end-form/build/main.js"></script>
 </body>
 </html>
