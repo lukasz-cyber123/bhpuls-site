@@ -24,18 +24,18 @@
     .hide{display:none}
 
     /* NAV */
-    header{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.85);backdrop-filter:saturate(180%) blur(12px);border-bottom:1px solid rgba(2,6,23,.06)}
-    .nav{display:flex;align-items:center;justify-content:space-between;gap:1rem;height:64px}
+    header{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.88);backdrop-filter:saturate(180%) blur(12px);border-bottom:1px solid rgba(2,6,23,.06)}
+    .nav{min-height:64px;height:auto;padding-block:10px;display:flex;align-items:center;justify-content:space-between;gap:1rem}
     .brand{display:flex;align-items:center;gap:.7rem;font-weight:800;letter-spacing:.3px;white-space:nowrap}
     .brand__logo-fallback{width:40px;height:40px;border-radius:10px;background:conic-gradient(from 180deg at 50% 50%, var(--brand), #16a34a, var(--brand));display:grid;place-items:center;color:#fff;font-weight:800}
-    .brand img{height:40px;display:none}
-    .menu{display:flex;align-items:center;gap:.4rem}
+    .brand img{height:40px;display:none} /* pokaże się po załadowaniu pliku (patrz onload) */
+    .menu{display:flex;align-items:center;gap:.4rem;flex-wrap:wrap;row-gap:6px}
     .menu a{padding:.55rem .75rem;border-radius:10px}
     .menu a:hover{background:rgba(6,78,59,.08)}
     .burger{display:grid;place-items:center;width:42px;height:42px;border-radius:10px;border:1px solid rgba(2,6,23,.08)}
 
     /* MOBILE MENU */
-    .drawer{position:fixed;inset:64px 0 auto 0;background:rgba(255,255,255,.98);backdrop-filter:blur(10px);border-bottom:1px solid rgba(2,6,23,.08);transform:translateY(-110%);transition:transform .35s ease}
+    .drawer{position:fixed;inset:calc(64px + 10px) 0 auto 0;background:rgba(255,255,255,.98);backdrop-filter:blur(10px);border-bottom:1px solid rgba(2,6,23,.08);transform:translateY(-110%);transition:transform .35s ease}
     .drawer.open{transform:translateY(0)}
     .drawer__links{display:grid;gap:.25rem;padding:12px var(--pad) 16px}
     .drawer__links a{padding:12px;border-radius:12px}
@@ -71,15 +71,7 @@
     /* FOOTER */
     footer{padding:28px 0;border-top:1px solid rgba(2,6,23,.08);color:#334155}
 
-    /* COOKIES BANNER */
-    .cookies{position:fixed;left:16px;right:16px;bottom:16px;z-index:60;display:none}
-    .cookies__box{background:#fff;border:1px solid rgba(2,6,23,.1);border-radius:14px;box-shadow:var(--shadow);padding:14px 16px;display:flex;gap:12px;align-items:center;justify-content:space-between;flex-wrap:wrap}
-    .cookies__text{color:#475569;font-size:14px;max-width:65ch}
-    .cookies__actions{display:flex;gap:8px}
-    .cookies__btn{padding:.6rem .9rem;border-radius:10px;border:1px solid rgba(2,6,23,.12);background:#fff;font-weight:600}
-    .cookies__btn.primary{background:linear-gradient(135deg,var(--brand),#0b3e30);border-color:#0b3e30;color:#fff}
-
-    /* BREAKPOINTS */
+    /* BREAKPOINT */
     @media (min-width: 760px){
       .grid.cols-3{grid-template-columns:repeat(3,1fr)}
       .hero__grid{grid-template-columns:1.1fr .9fr}
@@ -132,7 +124,10 @@
           </div>
         </div>
         <div class="hero__img">
-          <img src="https://images.unsplash.com/photo-1516483638261-f4dbaf036963?q=80&w=1600&auto=format&fit=crop" alt="Bezpieczeństwo pracy — kask i rękawice na tle hali" loading="lazy" />
+          <!-- Twoje zdjęcie z bezpiecznym fallbackiem -->
+          <img src="hero-bhpuls.jpg"
+               onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1516483638261-f4dbaf036963?q=80&w=1600&auto=format&fit=crop';"
+               alt="Bezpieczeństwo pracy — zdjęcie bohaterowe" loading="lazy" />
         </div>
       </div>
     </div>
@@ -190,7 +185,7 @@
     <div class="section__head"><h2 class="section__title">Kontakt</h2></div>
     <div class="grid">
       <article class="card">
-        <form action="https://formspree.io/f/mgvLodyl" method="POST">
+        <form action="https://formspree.io/f/mgvlodyl" method="POST">
           <input type="hidden" name="_redirect" value="https://bhpuls.pl/dziekujemy.html" />
           <input type="text" name="name" placeholder="Imię i nazwisko" required>
           <input type="email" name="email" placeholder="E-mail" required>
@@ -214,28 +209,15 @@
     </div>
   </footer>
 
-  <!-- COOKIES BANNER -->
-  <div class="cookies" id="cookies">
-    <div class="cookies__box container">
-      <div class="cookies__text">
-        Używamy niezbędnych plików cookies do działania strony. Szczegóły w <a href="/polityka-cookies.html">polityce cookies</a>.
-      </div>
-      <div class="cookies__actions">
-        <button class="cookies__btn" id="cookiesDecline">Odrzuć</button>
-        <button class="cookies__btn primary" id="cookiesAccept">Akceptuję</button>
-      </div>
-    </div>
-  </div>
-
   <script>
     // rok w stopce
     document.getElementById('y').textContent = new Date().getFullYear();
 
-    // menu responsywne
+    // menu responsywne (burger od 1024px)
     const burger = document.getElementById('burger');
     const drawer = document.getElementById('drawer');
     const menuDesktop = document.getElementById('menuDesktop');
-    const mql = window.matchMedia('(min-width: 900px)');
+    const mql = window.matchMedia('(min-width: 1024px)');
     function syncMenus(e){
       if(e.matches){ menuDesktop.classList.remove('hide'); drawer.classList.remove('open'); burger.setAttribute('aria-expanded','false'); }
       else{ menuDesktop.classList.add('hide'); }
@@ -243,14 +225,6 @@
     mql.addEventListener('change', syncMenus); syncMenus(mql);
     burger.addEventListener('click', () => { const open = drawer.classList.toggle('open'); burger.setAttribute('aria-expanded', open ? 'true' : 'false'); });
     window.closeDrawer = function(){ drawer.classList.remove('open'); burger.setAttribute('aria-expanded','false'); }
-
-    // cookie banner (simple)
-    const c = document.getElementById('cookies');
-    const ACC_KEY = 'bhpuls_cookie_ok';
-    const DEC_KEY = 'bhpuls_cookie_no';
-    if(!localStorage.getItem(ACC_KEY) && !localStorage.getItem(DEC_KEY)){ c.style.display = 'block'; }
-    document.getElementById('cookiesAccept').onclick = () => { localStorage.setItem(ACC_KEY,'1'); c.style.display='none'; };
-    document.getElementById('cookiesDecline').onclick = () => { localStorage.setItem(DEC_KEY,'1'); c.style.display='none'; };
   </script>
 </body>
 </html>
