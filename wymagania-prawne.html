@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Aktualne wymagania prawne — BHpuls</title>
+  <meta name="description" content="Co tydzień zestawiamy zmiany w prawie pracy i BHP. Krótko, jasno, z komentarzem praktycznym. Nie jesteś pewien, czy wymagania w Twojej firmie są aktualne? Sprawdzimy i pomożemy." />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#f6faf8; --fg:#0f172a; --muted:#475569;
+      --brand:#064e3b; --brand2:#0ea5a3;
+      --card:#ffffff; --line:rgba(2,6,23,.08);
+      --shadow:0 10px 26px rgba(0,0,0,.06);
+      --radius:16px; --maxw:1200px; --pad:clamp(16px,2.6vw,28px);
+      --section-pad:clamp(40px,6.2vw,64px);
+    }
+    *,*::before,*::after{box-sizing:border-box}
+    html,body{height:100%}
+    body{margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:var(--bg);color:var(--fg);-webkit-font-smoothing:antialiased}
+    img{max-width:100%;height:auto;display:block}
+    a{color:inherit;text-decoration:none}
+    .container{max-width:var(--maxw);margin-inline:auto;padding-inline:var(--pad)}
+    header{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.94);backdrop-filter:saturate(180%) blur(12px);border-bottom:1px solid var(--line)}
+    .nav{min-height:64px;padding-block:10px;display:flex;align-items:center;justify-content:space-between;gap:1rem}
+    .brand{display:flex;align-items:center;gap:.7rem;font-weight:800}
+    .brand img{height:40px}
+    .menu{display:flex;gap:.4rem;flex-wrap:nowrap;overflow-x:auto;white-space:nowrap;scrollbar-width:none}
+    .menu::-webkit-scrollbar{display:none}
+    .menu a{padding:.55rem .75rem;border-radius:10px}
+    .menu a:hover{background:rgba(6,78,59,.08)}
+    .menu a[aria-current="page"]{background:rgba(6,78,59,.12);font-weight:700}
+
+    h1{font-size:clamp(28px,5.2vw,48px);line-height:1.14;margin:0}
+    h2{font-size:clamp(20px,3.4vw,28px);margin:0}
+    h3{font-size:clamp(18px,2.4vw,22px);margin:0}
+    p{margin:.35rem 0 0;color:var(--muted);font-size:clamp(16px,1.55vw,18px)}
+    section{padding:var(--section-pad) 0}
+    .hero{padding:calc(var(--section-pad) * .9) 0;background:
+      radial-gradient(1200px 400px at 70% -10%, rgba(14,165,163,.25), transparent),
+      radial-gradient(1000px 500px at -10% 10%, rgba(6,78,59,.18), transparent)}
+    .grid{display:grid;gap:clamp(14px,1.8vw,18px)}
+    .updates{grid-template-columns:1fr}
+    .card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:18px}
+    .update__meta{display:flex;gap:.6rem;align-items:center;color:#334155;font-size:14px;margin-bottom:6px}
+    .badge{display:inline-flex;align-items:center;gap:.4rem;padding:.2rem .55rem;border:1px solid rgba(6,78,59,.25);border-radius:999px;color:#0b3e30;background:#fff;font-weight:600;font-size:12px}
+    .btn{display:inline-flex;align-items:center;gap:.6rem;padding:.8rem 1.1rem;border-radius:12px;font-weight:700;border:1px solid #0b3e30;background:linear-gradient(135deg,var(--brand),#0b3e30);color:#fff;box-shadow:var(--shadow)}
+    .btn.ghost{background:#fff;color:var(--brand);border:1px solid #0b3e30}
+    .cta{background:var(--card);border:1px solid var(--line);border-radius:20px;box-shadow:var(--shadow);padding:18px;display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between}
+    footer{padding:22px 0;border-top:1px solid var(--line);color:#334155}
+    @media (min-width:760px){ .updates{grid-template-columns:repeat(2,1fr)} }
+  </style>
+</head>
+<body>
+  <!-- NAV -->
+  <header>
+    <div class="container nav">
+      <a class="brand" href="index.html#top" aria-label="BHpuls — strona główna">
+        <img src="logo-bhpuls.png" alt="BHpuls logo">
+        <span>BHpuls</span>
+      </a>
+      <nav class="menu" aria-label="Nawigacja">
+        <a href="index.html#oferta">Usługi</a>
+        <a href="index.html#iso">ISO 45001/14001</a>
+        <a href="index.html#safetyday">Safety Day</a>
+        <a href="index.html#filmy">Filmy BHP</a>
+        <a href="index.html#dlaczego">Dlaczego my?</a>
+        <a href="index.html#kontakt">Kontakt</a>
+        <a href="wymagania-prawne.html" aria-current="page">Wymagania prawne</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="container">
+      <h1>Aktualne wymagania prawne</h1>
+      <p>Co tydzień zestawiamy zmiany w prawie pracy i BHP. Krótko, jasno, z praktycznym komentarzem.</p>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section>
+    <div class="container">
+      <div class="cta">
+        <div>
+          <h2 style="margin-bottom:6px">Nie jesteś pewien, czy wymagania w Twojej firmie są aktualne?</h2>
+          <p>Z chęcią <strong>sprawdzimy</strong> i <strong>pomożemy wdrożyć</strong> niezbędne korekty – bez zbędnej papierologii.</p>
+        </div>
+        <a class="btn" href="index.html#kontakt">Skonsultuj wymagania</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- UPDATES LIST -->
+  <section>
+    <div class="container">
+      <div style="display:flex;align-items:end;justify-content:space-between;margin-bottom:14px">
+        <h2>Ostatnie aktualizacje</h2>
+        <!-- (opcjonalnie) link do archiwum, jeśli kiedyś zrobimy -->
+      </div>
+
+      <div class="grid updates">
+
+        <!-- 🔧 SZABLON JEDNEJ AKTUALIZACJI
+          Kopiuj <article> i podmieniaj: id, datetime, datę, tytuł, treść oraz linki/źródła.
+          Staraj się dopisywać najnowsze wpisy NA GÓRZE listy. -->
+        <article class="card" id="akt-2025-09-05">
+          <div class="update__meta">
+            <time datetime="2025-09-05">05.09.2025</time>
+            <span class="badge">Prawo pracy</span>
+          </div>
+          <h3>Zmiana zasad prowadzenia rejestru czasu pracy — doprecyzowanie formy</h3>
+          <p>Nowelizacja dopuszcza pełną cyfryzację rejestru pod warunkiem zapewnienia integralności i dostępności danych podczas kontroli. W praktyce: systemy elektroniczne OK, ale muszą mieć funkcje eksportu i historii zmian.</p>
+          <p class="muted" style="margin-top:8px">Źródło: <a href="#" target="_blank" rel="noopener">Dziennik Ustaw — poz. XXXX</a>. Komentarz BHpuls: warto przejrzeć uprawnienia i politykę backupów.</p>
+        </article>
+
+        <article class="card" id="akt-2025-08-29">
+          <div class="update__meta">
+            <time datetime="2025-08-29">29.08.2025</time>
+            <span class="badge">BHP</span>
+          </div>
+          <h3>Obowiązek instruktażu stanowiskowego dla nowych technologii</h3>
+          <p>Pracodawca musi ponownie ocenić ryzyko i przeprowadzić instruktaż, jeżeli zmienia się technologia lub narzędzia pracy. Dotyczy to również wdrażania automatyki i robotów współpracujących.</p>
+          <p class="muted" style="margin-top:8px">Źródło: <a href="#" target="_blank" rel="noopener">Komunikat MRPiPS</a>. Komentarz: spisz listę stanowisk + checklistę kompetencji.</p>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container" style="display:flex;flex-wrap:wrap;gap:10px;justify-content:space-between;align-items:center">
+      <small>© <span id="y"></span> BHpuls • Dolny Śląsk • PL/EN/UA</small>
+      <small><a class="btn ghost" style="padding:.45rem .75rem;border-radius:999px" href="/polityka-cookies.html">Polityka cookies</a></small>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('y').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
