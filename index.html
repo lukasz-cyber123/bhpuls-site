@@ -1,182 +1,341 @@
 <!DOCTYPE html>
 <html lang="pl">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>BHpuls – Profesjonalne szkolenia i audyty BHP, ISO 14001/45001</title>
-  <meta name="description" content="BHpuls: Szkolenia BHP, audyty ISO 14001/45001, filmy BHP dla gości, wydarzenia Safety Day. Praktyka zamiast teorii – po polsku, angielsku i ukraińsku." />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>BHpuls — Szkolenia BHP, ISO 45001/14001, Safety Day, materiały dla gości</title>
+  <meta name="description" content="BHpuls: praktyczne szkolenia BHP, audyty i wdrożenia ISO 45001/14001, Safety Day, filmy i ulotki BHP dla gości i podwykonawców. Dolny Śląsk i cała Polska (zdalnie). PL/EN/UA." />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
     :root{
-      --green:#0a8b4b;         /* brand green */
-      --green-dark:#066a39;    /* darker hover */
-      --orange:#ff7a1a;        /* pulse accent */
-      --text:#0f172a;          /* slate-900 */
-      --muted:#475569;         /* slate-600 */
-      --bg:#f7faf9;            /* soft neutral */
-      --card:#ffffff;          /* white */
-      --ring:rgba(10,139,75,.18);
-      --max:1140px;
+      --bg:#f6faf8; --fg:#0f172a; --muted:#475569;
+      --brand:#064e3b; --brand2:#0ea5a3;
+      --card:#ffffff; --line:rgba(2,6,23,.08);
+      --shadow:0 10px 26px rgba(0,0,0,.06);
+      --radius:16px; --maxw:1200px; --pad:clamp(16px,2.6vw,28px);
+      --section-pad:clamp(40px,6.2vw,64px);
     }
-    *{box-sizing:border-box}
-    html,body{margin:0;padding:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial,"Noto Sans",sans-serif;color:var(--text);background:var(--bg)}
+    *,*::before,*::after{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+      color:var(--fg);background:var(--bg);line-height:1.6;
+      -webkit-font-smoothing:antialiased;font-size:18px;overflow-x:hidden;
+    }
+    img{max-width:100%;height:auto;display:block}
     a{color:inherit;text-decoration:none}
-    img{max-width:100%;display:block}
-    .container{max-width:var(--max);margin:0 auto;padding:0 20px}
+    .container{max-width:var(--maxw);margin-inline:auto;padding-inline:var(--pad)}
+    h1{font-size:clamp(28px,5.2vw,50px);line-height:1.14;margin:0 0 10px}
+    h2{font-size:clamp(22px,3.8vw,34px);margin:0}
+    h3{font-size:clamp(18px,2.6vw,22px);margin:0 0 6px}
+    p{font-size:clamp(16px,1.55vw,18px);margin:0 0 .65rem}
+    .muted{color:var(--muted)}
+    .btn{display:inline-flex;align-items:center;gap:.6rem;padding:.8rem 1.1rem;border-radius:12px;font-weight:700;border:1px solid #0b3e30;background:linear-gradient(135deg,var(--brand),#0b3e30);color:#fff;box-shadow:var(--shadow)}
+    .btn.ghost{background:#fff;color:var(--brand);border:1px solid #0b3e30}
+
     /* NAV */
-    header{position:sticky;top:0;z-index:50;background:#ffffff;border-bottom:1px solid #e5e7eb}
-    .nav{display:flex;align-items:center;justify-content:space-between;height:64px;gap:16px}
-    .brand{display:flex;align-items:center;gap:12px;font-weight:700}
-    .brand .logo{width:28px;height:28px;border-radius:8px;background:linear-gradient(160deg,var(--green),#15a362);position:relative;box-shadow:0 4px 14px rgba(10,139,75,.25)}
-    .brand .logo::after{content:"";position:absolute;left:4px;right:4px;top:12px;height:2px;background:linear-gradient(90deg,#fff 0 30%,var(--orange) 30% 60%,#fff 60% 100%);border-radius:2px}
-    .menu{display:flex;gap:18px;align-items:center}
-    .menu a{font-weight:500;color:var(--muted)}
-    .menu a:hover{color:var(--text)}
-    .btn-link{padding:10px 14px;border:1px solid var(--green);color:#fff;background:var(--green);border-radius:10px;font-weight:600}
-    .btn-link:hover{background:var(--green-dark)}
-    /* HERO */
-    .hero{background:radial-gradient(1200px 400px at 50% -120px, rgba(10,139,75,.08), transparent 60%),linear-gradient(180deg,#ffffff, #f4fbf7)}
-    .hero-wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:28px;align-items:center;padding:48px 0}
-    .eyebrow{display:inline-flex;align-items:center;gap:10px;border:1px solid #e2e8f0;padding:6px 10px;border-radius:999px;background:#fff;color:var(--muted);font-size:12px}
-    .pulse{width:14px;height:14px;border-radius:50%;background:var(--orange);box-shadow:0 0 0 0 rgba(255,122,26,.45);animation:pulse 2s infinite}
-    @keyframes pulse{to{box-shadow:0 0 0 14px rgba(255,122,26,0)}}
-    h1{font-size:40px;line-height:1.1;margin:14px 0 10px}
-    .lead{font-size:18px;color:var(--muted);max-width:56ch}
-    .cta-row{display:flex;gap:12px;align-items:center;margin-top:22px;flex-wrap:wrap}
-    .btn-primary{background:var(--green);color:#fff;border:none;padding:12px 18px;border-radius:12px;font-weight:700;box-shadow:0 8px 30px var(--ring);cursor:pointer}
-    .btn-primary:hover{background:var(--green-dark)}
-    .btn-ghost{padding:12px 16px;border-radius:12px;border:1px solid #e2e8f0;background:#fff;font-weight:600}
-    .hero-card{background:#fff;border:1px solid #e5e7eb;border-radius:16px;padding:18px;box-shadow:0 8px 28px rgba(2,6,23,.06)}
-    .hero-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-    .stat{display:flex;flex-direction:column;padding:14px;border-radius:14px;border:1px solid #e5e7eb;background:#fff}
-    .stat b{font-size:22px}
-    /* SEKCJE */
-    section{padding:56px 0}
-    .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
-    .card{background:var(--card);border:1px solid #e5e7eb;border-radius:16px;padding:20px}
-    .card h3{margin:6px 0 8px}
-    .badge{display:inline-block;font-size:12px;padding:4px 8px;border-radius:999px;background:#ecfdf5;color:var(--green);border:1px solid #d1fae5}
-    /* FOOTER */
-    footer{background:#0b1b13;color:#e2e8f0;padding:36px 0;margin-top:24px}
-    footer a{color:#a1e7c7}
-    .foot{display:grid;grid-template-columns:1.2fr .8fr .8fr;gap:18px}
-    .copyright{margin-top:16px;border-top:1px solid rgba(255,255,255,.12);padding-top:12px;font-size:14px;color:#cbd5e1}
-    /* RESPONSIVE */
+    header{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.94);backdrop-filter:saturate(180%) blur(12px);border-bottom:1px solid var(--line)}
+    .nav{min-height:64px;padding-block:10px;display:flex;align-items:center;justify-content:space-between;gap:1rem}
+    .brand{display:flex;align-items:center;gap:.7rem;font-weight:800}
+    .brand img{height:40px}
+    .menu{display:flex;gap:.4rem;flex-wrap:nowrap;overflow-x:auto;white-space:nowrap;scrollbar-width:none}
+    .menu::-webkit-scrollbar{display:none}
+    .menu a{padding:.55rem .75rem;border-radius:10px}
+    .menu a:hover{background:rgba(6,78,59,.08)}
+
+    /* LAYOUT */
+    section{padding:var(--section-pad) 0}
+    .section__head{display:flex;justify-content:space-between;align-items:end;gap:1rem;margin-bottom:clamp(16px,2.4vw,22px)}
+    .grid{display:grid;gap:clamp(14px,1.8vw,18px)}
+    .grid.cols-3{grid-template-columns:repeat(1,1fr)}
+    .card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:18px}
+    .banner-img{width:100%;border-radius:20px;box-shadow:var(--shadow);object-fit:cover}
+
+    /* ===== HERO (tekst full width; pod nim: badges | photo) ===== */
+    .hero{position:relative;isolation:isolate}
+    .hero__bg{position:absolute;inset:0;background:
+      radial-gradient(1200px 400px at 70% -10%, rgba(14,165,163,.25), transparent),
+      radial-gradient(1000px 500px at -10% 10%, rgba(6,78,59,.18), transparent)}
+    .hero__wrap{padding:calc(var(--section-pad) * .9) 0}
+    .hero__grid{
+      display:grid;
+      gap:clamp(20px,2.8vw,32px);
+      align-items:start;
+      grid-template-columns: 1fr 1fr;
+      grid-template-areas:
+        "text  text"
+        "badges photo";
+    }
+    .hero__text{ grid-area:text; }
+    .hero__img{
+      grid-area:photo;
+      border-radius:20px; overflow:hidden; box-shadow:var(--shadow);
+      aspect-ratio:16/9; background:#0b3e30;
+    }
+    .hero__badges{
+      grid-area:badges;
+      align-self:start;
+      width:100%;
+      max-width:100%;
+      height:auto;
+      object-fit:contain;
+      display:block;
+      margin-top:8px;
+    }
     @media (max-width: 900px){
-      .hero-wrap{grid-template-columns:1fr}
-      .grid-3{grid-template-columns:1fr}
-      .menu{display:none}
+      .hero__grid{
+        grid-template-columns: 1fr;
+        grid-template-areas:
+          "text"
+          "photo"
+          "badges";
+      }
+      .hero__badges{max-width:100%;margin-top:8px}
+    }
+
+    /* INFO STRIP */
+    .info-strip{display:grid;gap:14px;grid-template-columns:1fr;align-items:center}
+    .info-strip .photo{border-radius:20px;overflow:hidden;box-shadow:var(--shadow)}
+    .info-strip .box{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:18px}
+
+    /* FORM */
+    form{display:grid;gap:12px}
+    input,textarea{width:100%;padding:14px;border-radius:12px;border:1px solid rgba(2,6,23,.12);background:#fff;font:inherit}
+    textarea{min-height:120px;resize:vertical}
+
+    footer{padding:22px 0;border-top:1px solid var(--line);color:#334155}
+
+    /* BREAKPOINTS */
+    @media (min-width:760px){
+      .grid.cols-3{grid-template-columns:repeat(3,1fr)}
+      .info-strip{grid-template-columns:1.1fr .9fr}
     }
   </style>
 </head>
 <body>
-  <!-- NAVBAR -->
+  <!-- NAV -->
   <header>
-    <div class="container nav" role="navigation" aria-label="Główna nawigacja">
-      <a class="brand" href="index.html" aria-label="BHpuls – strona główna">
-        <span class="logo" aria-hidden="true"></span>
+    <div class="container nav">
+      <a class="brand" href="#top" aria-label="BHpuls — strona główna">
+        <img src="logo-bhpuls.png" alt="BHpuls logo">
         <span>BHpuls</span>
       </a>
-      <nav class="menu">
-        <a href="index.html">Strona główna</a>
-        <a href="dlaczego.html">Dlaczego my</a>
-        <a href="szkolenia.html">Szkolenia</a>
-        <a href="filmy.html">Filmy BHP</a>
-        <a href="ulotki.html">Ulotki BHP</a>
-        <a href="kontakt.html">Kontakt</a>
-        <a class="btn-link" href="wymagania.html" title="Aktualne wymagania prawne">Aktualne wymagania prawne</a>
+      <nav class="menu" aria-label="Główne">
+        <a href="#oferta">Usługi</a>
+        <a href="#iso">ISO 45001/14001</a>
+        <a href="#safetyday">Safety Day</a>
+        <a href="#filmy">Filmy BHP</a>
+        <a href="#dlaczego">Dlaczego my?</a>
+        <a href="wymagania-prawne.html">Wymagania prawne</a>
+        <a href="#checklista">Checklista</a>
+        <a href="#kontakt">Kontakt</a>
       </nav>
     </div>
   </header>
 
   <!-- HERO -->
-  <section class="hero">
-    <div class="container hero-wrap">
-      <div>
-        <span class="eyebrow"><span class="pulse"></span> Praktyka zamiast teorii • PL / EN / UA</span>
-        <h1>Bezpieczna produkcja i realne oszczędności dzięki <span style="color:var(--green)">BHpuls</span></h1>
-        <p class="lead">Szkolenia BHP szyte na miarę branży, audyty ISO 14001 / ISO 45001 oraz filmy BHP dla gości i podwykonawców. Wszystko w przejrzystej, nowoczesnej formie.</p>
-        <div class="cta-row">
-          <a class="btn-primary" href="wymagania.html">Sprawdź aktualne wymagania prawne</a>
-          <a class="btn-ghost" href="szkolenia.html">Zobacz ofertę szkoleń</a>
+  <main id="top" class="hero">
+    <div class="hero__bg" aria-hidden="true"></div>
+    <div class="container hero__wrap">
+      <div class="hero__grid">
+
+        <div class="hero__text">
+          <h1>Bezpieczna praca to wynik
+            <span style="background:linear-gradient(90deg,var(--brand),var(--brand2));-webkit-background-clip:text;background-clip:text;color:transparent">dobrego systemu</span>, nie przypadku.</h1>
+          <p>Pomagamy firmom budować kulturę bezpieczeństwa: szkolimy, audytujemy, wdrażamy ISO 45001/14001 i przygotowujemy materiały dla gości i podwykonawców. <strong>Masz plan na rozwój bezpieczeństwa?</strong> A może potrzebujesz zastępstwa dla lokalnego BHP-owca — np. gdy idzie na urlop? <strong>My zajmiemy się resztą.</strong></p>
         </div>
-      </div>
-      <div class="hero-card">
-        <div class="hero-grid">
-          <div class="stat"><span class="badge">Doświadczenie</span><b>15+ lat</b><small>HSHE / BHP w automotive, ciężkim przemyśle i FMCG</small></div>
-          <div class="stat"><span class="badge">Uczestnicy</span><b>1000+</b><small>przeszkolonych pracowników i kadry</small></div>
-          <div class="stat"><span class="badge">Języki</span><b>PL • EN • UA</b><small>Materiały i egzaminy w 3 językach</small></div>
-          <div class="stat"><span class="badge">Certyfikacje</span><b>ISO 14001 / 45001</b><small>Audyty i wsparcie poaudytowe</small></div>
+
+        <img class="hero__badges"
+             src="hero-badges.png"
+             alt="Bezpieczeństwo • Higiena • Porządek • Udoskonalenia • Ludzie • Szkolenia">
+
+        <div class="hero__img">
+          <img src="bhpuls-specjalista.jpg"
+               alt="Specjalista BHPuls — audyty, szkolenia i wsparcie HSE" loading="eager">
         </div>
+
+      </div>
+    </div>
+  </main>
+
+  <!-- INFO: region + języki -->
+  <section class="container" aria-labelledby="info-title">
+    <div class="info-strip">
+      <div class="photo">
+        <img src="specjalista-flag.png" alt="Specjalista BHPuls — języki PL/EN/UA">
+      </div>
+      <div class="box">
+        <h3 id="info-title">Jesteśmy blisko — działamy skutecznie</h3>
+        <p>Działamy głównie na terenie <strong>Dolnego Śląska</strong>, a dzięki pracy zdalnej wspieramy firmy w <strong>całej Polsce</strong>. Szkolimy w językach: <strong>polskim</strong>, <strong>angielskim</strong> i <strong>ukraińskim</strong>.</p>
       </div>
     </div>
   </section>
 
-  <!-- USŁUGI KLUCZOWE -->
-  <section>
-    <div class="container">
-      <h2>Co robimy</h2>
-      <div class="grid-3" aria-label="Lista kluczowych usług">
-        <article class="card">
-          <span class="badge">Szkolenia</span>
-          <h3>Szkolenia BHP dopasowane do branży</h3>
-          <p>Minimum teorii, maksimum praktyki – scenariusze pod rzeczywiste zagrożenia Twojej produkcji. E‑learning, grywalizacja i testy adaptacyjne.</p>
-          <p><a href="szkolenia.html">Więcej →</a></p>
-        </article>
-        <article class="card">
-          <span class="badge">Audyty</span>
-          <h3>ISO 14001 / ISO 45001</h3>
-          <p>Audyt, mapa ryzyk i plan działań naprawczych. Pomoc w zamykaniu niezgodności i optymalizacji kosztów.</p>
-          <p><a href="dlaczego.html">Więcej →</a></p>
-        </article>
-        <article class="card">
-          <span class="badge">Multimedia</span>
-          <h3>Filmy BHP dla gości i podwykonawców</h3>
-          <p>Krótko, jasno, wizerunkowo – razem z Twoimi pracownikami. Materiały do wyświetlenia przy bramie lub na LMS.</p>
-          <p><a href="filmy.html">Więcej →</a></p>
-        </article>
-      </div>
+  <!-- USŁUGI -->
+  <section id="oferta" class="container">
+    <div class="section__head">
+      <h2>Usługi BHpuls</h2>
+      <a class="btn ghost" href="#kontakt">Formularz kontaktowy</a>
+    </div>
+
+    <img class="banner-img" src="uslugi-dymki.jpg" alt="Szkolenia BHP, ulotki i filmy dla gości, wsparcie BHP na wezwanie" style="margin-bottom:14px">
+
+    <div class="grid cols-3">
+      <article class="card">
+        <h3>Szkolenia BHP — wstępne, okresowe, branżowe</h3>
+        <p>Praktyczne i konkretne, nastawione na budowanie świadomości. Organizowane w siedzibie Pracodawcy oraz jako e-learning (SCORM/LMS) z testem online.</p>
+      </article>
+
+      <article class="card">
+        <h3>Audyty i wdrożenia ISO 45001/14001</h3>
+        <p>Audyt zerowy i systemowy, gap-analysis, mapa ryzyk, przygotowanie do certyfikacji oraz wsparcie w utrzymaniu systemu.</p>
+      </article>
+
+      <article class="card">
+        <h3>Filmy i ulotki bezpieczeństwa dla gości</h3>
+        <p>Krótki film o zasadach bezpieczeństwa + ulotki dopasowane do specyfiki zakładu. Wersje PL/EN/UA.</p>
+      </article>
+
+      <article class="card">
+        <h3>Safety Day / Dni Bezpieczeństwa</h3>
+        <p>Kompletny scenariusz i stanowiska tematyczne. Udany Safety Day angażuje pracowników, wzmacnia zespół i employer branding — realnie podnosi świadomość.</p>
+      </article>
+
+      <article class="card">
+        <h3>Dokumentacja i procedury</h3>
+        <p>Oceny ryzyka, instrukcje, rejestry, KPI i raporty. Tłumaczymy standardy grupowe i pomagamy je skutecznie wdrażać.</p>
+      </article>
+
+      <article class="card">
+        <h3>Wsparcie BHP na wezwanie</h3>
+        <p>Niespodziewana kontrola? Zdarzenie przy pracy? A może lokalny specjalista BHP jest na urlopie? Wskakujemy na zastępstwo i pomagamy w każdej sytuacji.</p>
+      </article>
     </div>
   </section>
 
-  <!-- CTA PRAWNE -->
-  <section>
-    <div class="container card" style="display:flex;align-items:center;justify-content:space-between;gap:18px">
-      <div>
-        <h3>Aktualne wymagania prawne</h3>
-        <p class="lead" style="margin:0">Co tydzień aktualizujemy zmiany w Kodeksie pracy i przepisach BHP wraz z krótkim komentarzem eksperckim.</p>
-      </div>
-      <a class="btn-primary" href="wymagania.html" aria-label="Przejdź do podstrony z wymaganiami prawnymi">Przejdź do zestawienia</a>
+  <!-- DLACZEGO MY -->
+  <section id="dlaczego" class="container">
+    <div class="section__head"><h2>Dlaczego my?</h2></div>
+
+    <div class="card" style="text-align:center;font-weight:800;font-size:clamp(18px,2.2vw,22px)">
+      Doświadczenie • Jakość • Profesjonalizm • Zaufanie
+    </div>
+
+    <div class="grid" style="margin-top:14px">
+      <article class="card">
+        <p><strong>Mamy doświadczenie w wielu branżach</strong> — automotive, przemysł ciężki, spożywczy i odzieżowy. Setki osób przeszkolonych w realnych warunkach.</p>
+        <p><strong>Stawiamy na praktykę</strong> — minimum teorii, maksimum narzędzi do użycia od razu.</p>
+        <p><strong>Wspieramy w audytach i ISO</strong> — przygotowanie, udział, zamykanie działań poaudytowych.</p>
+        <p><strong>Zapewniamy elastyczność</strong> — stacjonarnie, online i hybrydowo. W razie absencji BHP przejmujemy obowiązki.</p>
+        <p><strong>Tworzymy materiały</strong> — ulotki dla gości, filmy o bezpieczeństwie z udziałem Twoich pracowników.</p>
+        <p><strong>Wspieramy podczas kontroli</strong> — PIP i inne organy.</p>
+      </article>
     </div>
   </section>
 
-  <!-- FOOTER -->
-  <footer role="contentinfo">
-    <div class="container foot">
-      <div>
-        <div class="brand" style="margin-bottom:8px"><span class="logo"></span><span>BHpuls</span></div>
-        <p>Profesjonalne szkolenia i audyty BHP, ISO 14001/45001, filmy BHP i wydarzenia Safety Day. Operujemy na terenie całej Polski.</p>
-      </div>
-      <div>
-        <h4>Oferta</h4>
-        <p><a href="szkolenia.html">Szkolenia BHP</a></p>
-        <p><a href="dlaczego.html">Audyty i optymalizacja</a></p>
-        <p><a href="filmy.html">Filmy BHP</a></p>
-        <p><a href="wymagania.html">Wymagania prawne</a></p>
-      </div>
-      <div>
-        <h4>Kontakt</h4>
-        <p><a href="mailto:kontakt@bhpuls.pl">kontakt@bhpuls.pl</a></p>
-        <p><a href="https://bhpuls.pl">bhpuls.pl</a></p>
-      </div>
+  <!-- ISO -->
+  <section id="iso" class="container">
+    <div class="section__head"><h2>ISO 45001 / ISO 14001 — praktycznie</h2></div>
+    <img class="banner-img" src="iso-audyt.jpg" alt="Profesjonalny audyt ISO 45001/14001" style="margin-bottom:14px">
+    <div class="grid">
+      <article class="card">
+        <p><strong>Audyt zerowy</strong> — diagnoza stanu i plan działań. <strong>Audyt systemowy</strong> — ocena zgodności i skuteczności. <strong>Wdrożenia ISO 45001 i ISO 14001</strong> — od mapy ryzyk po procedury i przygotowanie do certyfikacji. Nastawienie na rezultat.</p>
+      </article>
     </div>
-    <div class="container copyright">© <span id="year"></span> BHpuls. Wszelkie prawa zastrzeżone.</div>
+  </section>
+
+  <!-- SAFETY DAY -->
+  <section id="safetyday" class="container">
+    <div class="section__head"><h2>Safety Day — zaangażowanie i praktyka</h2></div>
+    <img class="banner-img" src="safetyday-kolaz.jpg" alt="Safety Day — pierwsza pomoc, gaśnice, gry i warsztaty" style="margin-bottom:14px">
+    <div class="grid">
+      <article class="card">
+        <p>Safety Day zmienia obowiązkowe szkolenie w dynamiczne warsztaty. Przygotowujemy kompletny scenariusz, materiały i quizy pod ryzyka Twojej firmy. Zwiększa świadomość, buduje zespół i kulturę bezpieczeństwa.</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- FILM + ULOTKA -->
+  <section id="filmy" class="container">
+    <div class="section__head"><h2>Film i Ulotka — bezpieczeństwo dla każdego gościa</h2></div>
+    <img class="banner-img" src="filmy-bhp.jpg" alt="Filmy BHP dla gości i podwykonawców" style="margin-bottom:14px">
+    <div class="grid">
+      <article class="card">
+        <p>Filmy i ulotki w prosty sposób wprowadzają gości w zasady obowiązujące w zakładzie. Materiały są dopasowane do specyfiki firmy — zrozumiałe i skuteczne.</p>
+        <p class="muted">Wersje: PL/EN/UA. Integracja z bramką wejściową (kod QR + test) — możliwa.</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- ULOTKI -->
+  <section id="ulotki" class="container">
+    <div class="section__head"><h2>Ulotki dla gości i podwykonawców</h2></div>
+    <img class="banner-img" src="ulotki-przyklad.png" alt="Przykładowe ulotki: ogólne zasady, ISO 14001, bezpieczeństwo pożarowe">
+  </section>
+
+  <!-- CHECKLISTA -->
+  <section id="checklista" class="container">
+    <div class="section__head"><h2>Darmowa checklista BHP (PDF)</h2></div>
+    <div class="grid">
+      <article class="card">
+        <form id="formChecklist">
+          <input type="email" name="email" placeholder="Twój e-mail" required autocomplete="email">
+          <label style="display:flex;align-items:center;gap:.5rem;font-size:14px;color:#475569">
+            <input type="checkbox" id="chkConsent" required>
+            Zgadzam się na kontakt w sprawie materiałów (zgodę można odwołać w każdej chwili).
+          </label>
+          <button class="btn" type="submit">Pobierz checklistę</button>
+        </form>
+      </article>
+    </div>
+  </section>
+
+  <!-- KONTAKT -->
+  <section id="kontakt" class="container">
+    <div class="section__head"><h2>Kontakt</h2></div>
+    <div class="grid">
+      <article class="card">
+        <form action="https://formspree.io/f/mgvlodyl" method="POST">
+          <input type="hidden" name="_redirect" value="https://bhpuls.pl/dziekujemy.html" />
+          <input type="text" name="name" placeholder="Imię i nazwisko" required autocomplete="name">
+          <input type="email" name="email" placeholder="E-mail" required autocomplete="email">
+          <input type="tel" name="phone" placeholder="Telefon (opcjonalnie)" autocomplete="tel">
+          <textarea name="message" placeholder="W czym możemy pomóc?" required></textarea>
+          <label style="display:flex;align-items:center;gap:.5rem;font-size:14px;color:#475569">
+            <input type="checkbox" required> Zgadzam się na kontakt zgodnie z Polityką prywatności.
+          </label>
+          <button class="btn" type="submit">Wyślij</button>
+        </form>
+      </article>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container" style="display:flex;flex-wrap:wrap;gap:10px;justify-content:space-between;align-items:center">
+      <small>© <span id="y"></span> BHpuls • Dolny Śląsk • PL/EN/UA</small>
+      <small><a class="btn ghost" style="padding:.45rem .75rem;border-radius:999px" href="/polityka-cookies.html">Polityka cookies</a></small>
+    </div>
   </footer>
 
   <script>
-    document.getElementById('year').textContent = new Date().getFullYear();
+    // Rok w stopce
+    document.getElementById('y').textContent = new Date().getFullYear();
+
+    // Checklista: otwórz PDF + cichy POST do Formspree
+    document.getElementById('formChecklist').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const email = e.target.email.value.trim();
+      if(!email || !document.getElementById('chkConsent').checked) return;
+      window.open('checklista-bhp.pdf', '_blank', 'noopener'); // 1) PDF
+      try{ // 2) cichy POST
+        await fetch('https://formspree.io/f/mgvlodyl', {
+          method:'POST',
+          headers:{'Accept':'application/json','Content-Type':'application/json'},
+          body: JSON.stringify({ email, type:'Checklist download' })
+        });
+      }catch(_){}
+      e.target.reset();
+    });
   </script>
 </body>
 </html>
