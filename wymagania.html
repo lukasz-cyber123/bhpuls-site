@@ -1,143 +1,257 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pl">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <title>Aktualne wymagania prawne — BHpuls</title>
-  <meta name="description" content="Co tydzień zestawiamy zmiany w prawie pracy i BHP. Krótko, jasno, z komentarzem praktycznym. Nie jesteś pewien, czy wymagania w Twojej firmie są aktualne? Sprawdzimy i pomożemy." />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Wymagania prawne — BHP i PPOŻ | BHpuls</title>
+  <meta name="description" content="Cotygodniowe, zwięzłe podsumowania zmian w przepisach BHP i PPOŻ. Konkretne zalecenia, branże, status, priorytet i źródła." />
   <style>
     :root{
-      --bg:#f6faf8; --fg:#0f172a; --muted:#475569;
-      --brand:#064e3b; --brand2:#0ea5a3;
-      --card:#ffffff; --line:rgba(2,6,23,.08);
-      --shadow:0 10px 26px rgba(0,0,0,.06);
-      --radius:16px; --maxw:1200px; --pad:clamp(16px,2.6vw,28px);
-      --section-pad:clamp(40px,6.2vw,64px);
+      --brand:#008C45;   /* zielony BHpuls */
+      --accent:#E9782A;  /* pomarańcz do CTA/chipsów */
+      --text:#1b1d1f;
+      --muted:#6b7280;
+      --bg:#ffffff;
+      --card:#f8fafc;
+      --border:#e5e7eb;
     }
-    *,*::before,*::after{box-sizing:border-box}
-    html,body{height:100%}
-    body{margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:var(--bg);color:var(--fg);-webkit-font-smoothing:antialiased}
-    img{max-width:100%;height:auto;display:block}
-    a{color:inherit;text-decoration:none}
-    .container{max-width:var(--maxw);margin-inline:auto;padding-inline:var(--pad)}
-    header{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.94);backdrop-filter:saturate(180%) blur(12px);border-bottom:1px solid var(--line)}
-    .nav{min-height:64px;padding-block:10px;display:flex;align-items:center;justify-content:space-between;gap:1rem}
-    .brand{display:flex;align-items:center;gap:.7rem;font-weight:800}
-    .brand img{height:40px}
-    .menu{display:flex;gap:.4rem;flex-wrap:nowrap;overflow-x:auto;white-space:nowrap;scrollbar-width:none}
-    .menu::-webkit-scrollbar{display:none}
-    .menu a{padding:.55rem .75rem;border-radius:10px}
-    .menu a:hover{background:rgba(6,78,59,.08)}
-    .menu a[aria-current="page"]{background:rgba(6,78,59,.12);font-weight:700}
+    html,body{margin:0;padding:0;background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,"Segoe UI",Roboto,Ubuntu,"Noto Sans",sans-serif}
+    .wrap{max-width:1200px;margin:auto;padding:24px}
+    header.hero{margin:10px 0 18px}
+    header.hero h1{margin:0 0 6px;font-size:clamp(1.6rem,2.4vw,2.2rem);font-weight:800;letter-spacing:.2px}
+    header.hero p{margin:0;color:var(--muted)}
+    .quicklinks{margin:14px 0 24px;display:flex;gap:10px;flex-wrap:wrap}
+    .quicklinks a{display:inline-block;padding:8px 12px;border:1px solid var(--border);border-radius:999px;text-decoration:none;color:var(--brand);background:#fff}
 
-    h1{font-size:clamp(28px,5.2vw,48px);line-height:1.14;margin:0}
-    h2{font-size:clamp(20px,3.4vw,28px);margin:0}
-    h3{font-size:clamp(18px,2.4vw,22px);margin:0}
-    p{margin:.35rem 0 0;color:var(--muted);font-size:clamp(16px,1.55vw,18px)}
-    section{padding:var(--section-pad) 0}
-    .hero{padding:calc(var(--section-pad) * .9) 0;background:
-      radial-gradient(1200px 400px at 70% -10%, rgba(14,165,163,.25), transparent),
-      radial-gradient(1000px 500px at -10% 10%, rgba(6,78,59,.18), transparent)}
-    .grid{display:grid;gap:clamp(14px,1.8vw,18px)}
-    .updates{grid-template-columns:1fr}
-    .card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:18px}
-    .update__meta{display:flex;gap:.6rem;align-items:center;color:#334155;font-size:14px;margin-bottom:6px}
-    .badge{display:inline-flex;align-items:center;gap:.4rem;padding:.2rem .55rem;border:1px solid rgba(6,78,59,.25);border-radius:999px;color:#0b3e30;background:#fff;font-weight:600;font-size:12px}
-    .btn{display:inline-flex;align-items:center;gap:.6rem;padding:.8rem 1.1rem;border-radius:12px;font-weight:700;border:1px solid #0b3e30;background:linear-gradient(135deg,var(--brand),#0b3e30);color:#fff;box-shadow:var(--shadow)}
-    .btn.ghost{background:#fff;color:var(--brand);border:1px solid #0b3e30}
-    .cta{background:var(--card);border:1px solid var(--line);border-radius:20px;box-shadow:var(--shadow);padding:18px;display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between}
-    footer{padding:22px 0;border-top:1px solid var(--line);color:#334155}
-    @media (min-width:760px){ .updates{grid-template-columns:repeat(2,1fr)} }
+    /* Układ sekcji */
+    .grid{display:grid;grid-template-columns:1fr;gap:16px}
+    @media(min-width:900px){.grid{grid-template-columns:1fr 1fr}}
+    .card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:16px}
+    .card .head{display:flex;align-items:center;gap:12px;margin-bottom:10px}
+    .icon{width:38px;height:38px;border-radius:10px;display:grid;place-items:center;color:#fff;background:linear-gradient(135deg,var(--brand),#0aa45a);font-size:20px}
+    .kicker{margin:0;color:var(--muted);text-transform:uppercase;font-size:.76rem;letter-spacing:.08em}
+    .title{margin:2px 0 2px 0;font-size:1.1rem;font-weight:800}
+    .period{font-size:.88rem;color:var(--muted)}
+    .updated{font-size:.82rem;color:var(--muted)}
+
+    /* Tabele (poziomy scroll na mobile) */
+    .table-wrap{overflow-x:auto;border:1px solid var(--border);border-radius:10px;background:#fff}
+    table{width:100%;border-collapse:collapse;min-width:900px}
+    th,td{padding:10px 12px;border-bottom:1px solid var(--border);vertical-align:top}
+    th{background:#f3f4f6;text-align:left;font-size:.9rem}
+    td{font-size:.92rem}
+    .no-updates td{color:var(--muted);font-style:italic;text-align:center}
+
+    .chips{display:flex;gap:6px;flex-wrap:wrap}
+    .chip{display:inline-flex;align-items:center;border-radius:999px;padding:2px 8px;font-size:.78rem;border:1px solid #ddd;background:#fff}
+    .chip.status{border-color:rgba(0,0,0,.06);background:#eef2ff}
+    .chip.prio-high{background:#fee2e2}
+    .chip.prio-med{background:#fff7ed}
+    .chip.prio-low{background:#ecfdf5}
+    .src a{color:var(--brand);text-decoration:none}
+    .src a:hover{text-decoration:underline}
+
+    details.archive{margin-top:10px}
+    details.archive summary{cursor:pointer;color:var(--brand);font-weight:700}
+
+    /* Blok grafik/CTA */
+    .graphics{margin:30px 0}
+    .graphics .g{display:grid;grid-template-columns:1fr;gap:16px}
+    @media(min-width:900px){.graphics .g{grid-template-columns:1fr 1fr}}
+    figure{margin:0;border:1px solid var(--border);border-radius:14px;overflow:hidden;background:#fff}
+    figure img{display:block;width:100%;height:auto}
+    figcaption{padding:12px 14px;background:#fff}
+    .gc-title{margin:0 0 6px;font-weight:800}
+    .gc-sub{margin:0;color:var(--muted)}
+    .cta{margin-top:10px}
+    .cta a{display:inline-block;background:var(--accent);color:#fff;text-decoration:none;padding:10px 14px;border-radius:10px}
+    .cta a:hover{opacity:.95}
+
+    footer.ft{margin:26px 0 4px;color:var(--muted);font-size:.82rem}
   </style>
 </head>
+
 <body>
-  <!-- NAV -->
-  <header>
-    <div class="container nav">
-      <a class="brand" href="index.html#top" aria-label="BHpuls — strona główna">
-        <img src="logo-bhpuls.png" alt="BHpuls logo">
-        <span>BHpuls</span>
-      </a>
-      <nav class="menu" aria-label="Nawigacja">
-        <a href="index.html#oferta">Usługi</a>
-        <a href="index.html#iso">ISO 45001/14001</a>
-        <a href="index.html#safetyday">Safety Day</a>
-        <a href="index.html#filmy">Filmy BHP</a>
-        <a href="index.html#dlaczego">Dlaczego my?</a>
-        <a href="index.html#kontakt">Kontakt</a>
-        <a href="wymagania-prawne.html" aria-current="page">Wymagania prawne</a>
+  <main class="wrap">
+    <!-- HERO -->
+    <header class="hero" aria-labelledby="h1">
+      <h1 id="h1">Aktualne wymagania prawne — BHP i&nbsp;PPOŻ</h1>
+      <p>Co tydzień, krótko i na temat. <strong>Tydzień: 08–14.09.2025 (pn–nd)</strong>. <span class="updated">Ostatnia aktualizacja: 09.09.2025</span></p>
+      <nav class="quicklinks" aria-label="Szybkie linki">
+        <a href="#bhp">BHP</a>
+        <a href="#ppoz">PPOŻ</a>
+        <a href="#grafiki">Masz mętlik? Pomożemy →</a>
       </nav>
-    </div>
-  </header>
+    </header>
 
-  <!-- HERO -->
-  <section class="hero">
-    <div class="container">
-      <h1>Aktualne wymagania prawne</h1>
-      <p>Co tydzień zestawiamy zmiany w prawie pracy i BHP. Krótko, jasno, z praktycznym komentarzem.</p>
-    </div>
-  </section>
-
-  <!-- CTA -->
-  <section>
-    <div class="container">
-      <div class="cta">
-        <div>
-          <h2 style="margin-bottom:6px">Nie jesteś pewien, czy wymagania w Twojej firmie są aktualne?</h2>
-          <p>Z chęcią <strong>sprawdzimy</strong> i <strong>pomożemy wdrożyć</strong> niezbędne korekty – bez zbędnej papierologii.</p>
+    <!-- DWA BLOKI: BHP + PPOŻ -->
+    <section class="grid" aria-label="Podsumowania">
+      <!-- BHP -->
+      <article class="card" id="bhp" aria-labelledby="bhp-title">
+        <div class="head">
+          <div class="icon" aria-hidden="true">👷</div>
+          <div>
+            <p class="kicker">Bezpieczeństwo i higiena pracy</p>
+            <h2 class="title" id="bhp-title">BHP — podsumowanie tygodnia</h2>
+            <div class="period">Okres: 08–14.09.2025</div>
+          </div>
         </div>
-        <a class="btn" href="index.html#kontakt">Skonsultuj wymagania</a>
-      </div>
-    </div>
-  </section>
 
-  <!-- UPDATES LIST -->
-  <section>
-    <div class="container">
-      <div style="display:flex;align-items:end;justify-content:space-between;margin-bottom:14px">
-        <h2>Ostatnie aktualizacje</h2>
-        <!-- (opcjonalnie) link do archiwum, jeśli kiedyś zrobimy -->
-      </div>
+        <div class="table-wrap" role="region" aria-label="Tabela BHP (przewiń w poziomie)">
+          <table>
+            <thead>
+              <tr>
+                <th style="width:140px">Publikator / nr</th>
+                <th style="width:260px">Tytuł skrócony</th>
+                <th style="width:120px">Dotyczy</th>
+                <th style="width:200px">Branże</th>
+                <th>Co zrobić (zalecenia) + Termin</th>
+                <th style="width:120px">Status</th>
+                <th style="width:120px">Priorytet</th>
+                <th style="width:110px">Źródło</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="no-updates">
+                <td colspan="8">W ubiegłym tygodniu nie opublikowano nowych aktów prawnych dotyczących BHP.</td>
+              </tr>
 
-      <div class="grid updates">
+              <!--
+              WZORZEC WIERSZA (skopiuj i uzupełnij, a wiersz „no-updates” usuń):
+              <tr>
+                <td>Dz.U. 2025 poz. 1234</td>
+                <td>Rozporządzenie MRPiPS w sprawie (…) — wymagania dot. …</td>
+                <td>ŚOI</td>
+                <td class="chips">
+                  <span class="chip">Automotive</span>
+                  <span class="chip">Logistyka/Magazyny</span>
+                </td>
+                <td>
+                  Zaktualizować instrukcje stanowiskowe i karty oceny ryzyka; uzupełnić szkolenie okresowe.<br>
+                  <strong>Termin:</strong> do 30.09.2025.
+                </td>
+                <td class="chips">
+                  <span class="chip status">Wchodzi w życie</span>
+                </td>
+                <td class="chips">
+                  <span class="chip prio-med">Średni</span>
+                </td>
+                <td class="src"><a href="LINK_DO_ISAP" target="_blank" rel="noopener">źródło</a></td>
+              </tr>
+              -->
+            </tbody>
+          </table>
+        </div>
 
-        <!-- 🔧 SZABLON JEDNEJ AKTUALIZACJI
-          Kopiuj <article> i podmieniaj: id, datetime, datę, tytuł, treść oraz linki/źródła.
-          Staraj się dopisywać najnowsze wpisy NA GÓRZE listy. -->
-        <article class="card" id="akt-2025-09-05">
-          <div class="update__meta">
-            <time datetime="2025-09-05">05.09.2025</time>
-            <span class="badge">Prawo pracy</span>
+        <details class="archive">
+          <summary>Archiwum (poprzednie tygodnie)</summary>
+          <div class="table-wrap" role="region" aria-label="Archiwum BHP">
+            <table>
+              <thead>
+                <tr>
+                  <th style="width:140px">Publikator / nr</th>
+                  <th style="width:260px">Tytuł skrócony</th>
+                  <th style="width:120px">Dotyczy</th>
+                  <th style="width:200px">Branże</th>
+                  <th>Co zrobić + Termin</th>
+                  <th style="width:120px">Status</th>
+                  <th style="width:120px">Priorytet</th>
+                  <th style="width:110px">Źródło</th>
+                </tr>
+              </thead>
+              <tbody>
+                <!-- Przenoś tu cały poprzedni tydzień (pn–nd) -->
+              </tbody>
+            </table>
           </div>
-          <h3>Zmiana zasad prowadzenia rejestru czasu pracy — doprecyzowanie formy</h3>
-          <p>Nowelizacja dopuszcza pełną cyfryzację rejestru pod warunkiem zapewnienia integralności i dostępności danych podczas kontroli. W praktyce: systemy elektroniczne OK, ale muszą mieć funkcje eksportu i historii zmian.</p>
-          <p class="muted" style="margin-top:8px">Źródło: <a href="#" target="_blank" rel="noopener">Dziennik Ustaw — poz. XXXX</a>. Komentarz BHpuls: warto przejrzeć uprawnienia i politykę backupów.</p>
-        </article>
+        </details>
+      </article>
 
-        <article class="card" id="akt-2025-08-29">
-          <div class="update__meta">
-            <time datetime="2025-08-29">29.08.2025</time>
-            <span class="badge">BHP</span>
+      <!-- PPOŻ -->
+      <article class="card" id="ppoz" aria-labelledby="ppoz-title">
+        <div class="head">
+          <div class="icon" aria-hidden="true">🔥</div>
+          <div>
+            <p class="kicker">Ochrona przeciwpożarowa</p>
+            <h2 class="title" id="ppoz-title">PPOŻ — podsumowanie tygodnia</h2>
+            <div class="period">Okres: 08–14.09.2025</div>
           </div>
-          <h3>Obowiązek instruktażu stanowiskowego dla nowych technologii</h3>
-          <p>Pracodawca musi ponownie ocenić ryzyko i przeprowadzić instruktaż, jeżeli zmienia się technologia lub narzędzia pracy. Dotyczy to również wdrażania automatyki i robotów współpracujących.</p>
-          <p class="muted" style="margin-top:8px">Źródło: <a href="#" target="_blank" rel="noopener">Komunikat MRPiPS</a>. Komentarz: spisz listę stanowisk + checklistę kompetencji.</p>
-        </article>
+        </div>
 
+        <div class="table-wrap" role="region" aria-label="Tabela PPOŻ (przewiń w poziomie)">
+          <table>
+            <thead>
+              <tr>
+                <th style="width:140px">Publikator / nr</th>
+                <th style="width:260px">Tytuł skrócony</th>
+                <th style="width:120px">Dotyczy</th>
+                <th style="width:200px">Branże</th>
+                <th>Co zrobić (zalecenia) + Termin</th>
+                <th style="width:120px">Status</th>
+                <th style="width:120px">Priorytet</th>
+                <th style="width:110px">Źródło</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="no-updates">
+                <td colspan="8">W ubiegłym tygodniu nie opublikowano nowych aktów prawnych dotyczących ochrony przeciwpożarowej.</td>
+              </tr>
+              <!-- WZORZEC WIERSZA – identyczny jak dla BHP -->
+            </tbody>
+          </table>
+        </div>
+
+        <details class="archive">
+          <summary>Archiwum (poprzednie tygodnie)</summary>
+          <div class="table-wrap" role="region" aria-label="Archiwum PPOŻ">
+            <table>
+              <thead>
+                <tr>
+                  <th style="width:140px">Publikator / nr</th>
+                  <th style="width:260px">Tytuł skrócony</th>
+                  <th style="width:120px">Dotyczy</th>
+                  <th style="width:200px">Branże</th>
+                  <th>Co zrobić + Termin</th>
+                  <th style="width:120px">Status</th>
+                  <th style="width:120px">Priorytet</th>
+                  <th style="width:110px">Źródło</th>
+                </tr>
+              </thead>
+              <tbody>
+                <!-- Przenoś tu cały poprzedni tydzień (pn–nd) -->
+              </tbody>
+            </table>
+          </div>
+        </details>
+      </article>
+    </section>
+
+    <!-- GRAFIKI + CTA -->
+    <section class="graphics" id="grafiki" aria-labelledby="gfx-title">
+      <h2 class="title" id="gfx-title" style="margin:10px 0 12px">Masz mętlik? Pomożemy.</h2>
+      <div class="g">
+        <figure>
+          <img src="wymagania-chaos.jpg" alt="Zestresowany menedżer i symbole paragrafów — chaos w przepisach." loading="lazy">
+          <figcaption>
+            <p class="gc-title">Masz mętlik w przepisach BHP i PPOŻ?</p>
+            <p class="gc-sub">Co tydzień podajemy zmiany po ludzku — bez prawniczego bełkotu.</p>
+          </figcaption>
+        </figure>
+
+        <figure>
+          <img src="wymagania-bhpuls.jpg" alt="Specjalista BHP w kasku z logo BHpuls — doradztwo prawne BHP." loading="lazy">
+          <figcaption>
+            <p class="gc-title">Pomożecie? Pomożemy.</p>
+            <p class="gc-sub">Audyty, wdrożenia, szkolenia. Daj nam tydzień — będzie ogarnięte.</p>
+            <div class="cta"><a href="/#kontakt">Zapytaj o pomoc</a></div>
+          </figcaption>
+        </figure>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <footer>
-    <div class="container" style="display:flex;flex-wrap:wrap;gap:10px;justify-content:space-between;align-items:center">
-      <small>© <span id="y"></span> BHpuls • Dolny Śląsk • PL/EN/UA</small>
-      <small><a class="btn ghost" style="padding:.45rem .75rem;border-radius:999px" href="/polityka-cookies.html">Polityka cookies</a></small>
-    </div>
-  </footer>
-
-  <script>
-    document.getElementById('y').textContent = new Date().getFullYear();
-  </script>
+    <footer class="ft">
+      Materiał informacyjny — nie stanowi porady prawnej. Zawsze weryfikuj u źródła (ISAP / RCL / EUR-Lex).
+    </footer>
+  </main>
 </body>
 </html>
