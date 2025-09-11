@@ -8,7 +8,7 @@
   <style>
     :root{
       --brand:#008C45;   /* zielony BHpuls */
-      --accent:#E9782A;  /* pomarańcz do CTA/chipsów */
+      --accent:#E9782A;  /* pomarańcz do CTA */
       --text:#1b1d1f;
       --muted:#6b7280;
       --bg:#ffffff;
@@ -16,16 +16,27 @@
       --border:#e5e7eb;
     }
     html,body{margin:0;padding:0;background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,"Segoe UI",Roboto,Ubuntu,"Noto Sans",sans-serif}
+
+    /* GÓRNY PASEK z LOGO i PRZYCISKIEM */
+    .topbar{position:sticky;top:0;z-index:10;background:#fff;border-bottom:1px solid var(--border)}
+    .topbar .bar{max-width:1200px;margin:auto;padding:10px 16px;display:flex;align-items:center;justify-content:space-between;gap:12px}
+    .brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:inherit}
+    .brand img{height:34px;width:auto;display:block}
+    .brand span{font-weight:800;letter-spacing:.2px}
+    .home-btn{display:inline-block;text-decoration:none;border:1px solid var(--border);padding:8px 12px;border-radius:10px;color:var(--brand);background:#fff}
+    .home-btn:hover{background:#f9fafb}
+
     .wrap{max-width:1200px;margin:auto;padding:24px}
-    header.hero{margin:10px 0 18px}
+    header.hero{margin:12px 0 18px}
     header.hero h1{margin:0 0 6px;font-size:clamp(1.6rem,2.4vw,2.2rem);font-weight:800;letter-spacing:.2px}
     header.hero p{margin:0;color:var(--muted)}
     .quicklinks{margin:14px 0 24px;display:flex;gap:10px;flex-wrap:wrap}
     .quicklinks a{display:inline-block;padding:8px 12px;border:1px solid var(--border);border-radius:999px;text-decoration:none;color:var(--brand);background:#fff}
 
-    /* Układ sekcji */
+    /* Sekcje */
     .grid{display:grid;grid-template-columns:1fr;gap:16px}
     @media(min-width:900px){.grid{grid-template-columns:1fr 1fr}}
+
     .card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:16px}
     .card .head{display:flex;align-items:center;gap:12px;margin-bottom:10px}
     .icon{width:38px;height:38px;border-radius:10px;display:grid;place-items:center;color:#fff;background:linear-gradient(135deg,var(--brand),#0aa45a);font-size:20px}
@@ -34,7 +45,7 @@
     .period{font-size:.88rem;color:var(--muted)}
     .updated{font-size:.82rem;color:var(--muted)}
 
-    /* Tabele (poziomy scroll na mobile) */
+    /* Tabele */
     .table-wrap{overflow-x:auto;border:1px solid var(--border);border-radius:10px;background:#fff}
     table{width:100%;border-collapse:collapse;min-width:900px}
     th,td{padding:10px 12px;border-bottom:1px solid var(--border);vertical-align:top}
@@ -54,7 +65,7 @@
     details.archive{margin-top:10px}
     details.archive summary{cursor:pointer;color:var(--brand);font-weight:700}
 
-    /* Blok grafik/CTA */
+    /* Grafiki/CTA */
     .graphics{margin:30px 0}
     .graphics .g{display:grid;grid-template-columns:1fr;gap:16px}
     @media(min-width:900px){.graphics .g{grid-template-columns:1fr 1fr}}
@@ -72,6 +83,17 @@
 </head>
 
 <body>
+  <!-- TOPBAR z LOGO i przyciskiem powrotu -->
+  <div class="topbar" role="banner">
+    <div class="bar">
+      <a href="/" class="brand" aria-label="BHpuls – strona główna">
+        <img src="logo-bhpuls.png" alt="BHpuls" />
+        <span>BHpuls</span>
+      </a>
+      <a class="home-btn" href="/">← Strona główna</a>
+    </div>
+  </div>
+
   <main class="wrap">
     <!-- HERO -->
     <header class="hero" aria-labelledby="h1">
@@ -112,42 +134,23 @@
               </tr>
             </thead>
             <tbody>
-  <tr>
-    <td>Dz.U. 2025 poz. 731</td>
-    <td>MRiT: BHP przy nadtlenkach organicznych (produkcja, stosowanie, magazynowanie, transport wewn.)</td>
-    <td>Nadtlenki organiczne</td>
-    <td class="chips">
-      <span class="chip">Chemia</span>
-      <span class="chip">Tworzywa</span>
-      <span class="chip">Magazyny niebezp.</span>
-    </td>
-    <td>
-      Zweryfikować typy magazynów (izolowane/oddzielone/podręczne), progi ilościowe i monitoring temperatur (TSR);
-      zaktualizować instrukcje i wyposażenie (np. szafki wg PN-EN 14470-1).<br>
-      <strong>Termin:</strong> do 05.12.2025 (wejście w życie).
-    </td>
-    <td class="chips"><span class="chip status">Wchodzi w życie</span></td>
-    <td class="chips"><span class="chip prio-high">Wysoki</span></td>
-    <td class="src"><a href="https://dziennikustaw.gov.pl/DU/2025/731/D2025000073101.pdf" target="_blank" rel="noopener">źródło</a></td>
-  </tr>
-
-  <tr>
-    <td>Dz.U. 2025 poz. 836</td>
-    <td>MZ: tekst jednolity – czynniki chemiczne w miejscu pracy</td>
-    <td>Czynniki chemiczne</td>
-    <td class="chips">
-      <span class="chip">Ogólne</span>
-      <span class="chip">Chemia</span>
-    </td>
-    <td>
-      Zaktualizować odwołania w dokumentacji (ocena ryzyka, instrukcje, szkolenia) do nowego tekstu jednolitego.<br>
-      <strong>Termin:</strong> wg harmonogramu przeglądu dokumentów.
-    </td>
-    <td class="chips"><span class="chip status">Tekst jednolity</span></td>
-    <td class="chips"><span class="chip prio-med">Średni</span></td>
-    <td class="src"><a href="https://dziennikustaw.gov.pl/DU/2025/836" target="_blank" rel="noopener">źródło</a></td>
-  </tr>
-</tbody>
+              <tr class="no-updates">
+                <td colspan="8">W ubiegłym tygodniu nie opublikowano nowych aktów prawnych dotyczących BHP.</td>
+              </tr>
+              <!--
+              WZORZEC WIERSZA (skopiuj i uzupełnij, a wiersz „no-updates” usuń):
+              <tr>
+                <td>Dz.U. 2025 poz. 1234</td>
+                <td>Rozporządzenie … (krótki tytuł)</td>
+                <td>Temat (np. ŚOI)</td>
+                <td class="chips"><span class="chip">Automotive</span><span class="chip">Ogólne</span></td>
+                <td>Co zrobić w 1–2 zdaniach.<br><strong>Termin:</strong> DD.MM.RRRR.</td>
+                <td class="chips"><span class="chip status">Wchodzi w życie</span></td>
+                <td class="chips"><span class="chip prio-med">Średni</span></td>
+                <td class="src"><a href="LINK_DO_ISAP" target="_blank" rel="noopener">źródło</a></td>
+              </tr>
+              -->
+            </tbody>
           </table>
         </div>
 
@@ -169,43 +172,6 @@
               </thead>
               <tbody>
                 <!-- Przenoś tu cały poprzedni tydzień (pn–nd) -->
-                <tr>
-  <td colspan="8" style="background:#f3f4f6;font-weight:700">
-    Okres: 04–10.09.2024 (pn–nd)
-  </td>
-</tr>
-<tr>
-  <td>Dz.U. 2024 poz. XXXX</td>
-  <td>PRZYKŁAD (archiwum testowe): zmiana zasad dot. ŚOI</td>
-  <td>ŚOI</td>
-  <td class="chips">
-    <span class="chip">Automotive</span>
-    <span class="chip">Ogólne</span>
-  </td>
-  <td>
-    Uaktualnić instrukcje stanowiskowe i karty oceny ryzyka; dopasować szkolenia okresowe.<br>
-    <strong>Termin:</strong> do 31.10.2024.
-  </td>
-  <td class="chips"><span class="chip status">Wchodzi w życie</span></td>
-  <td class="chips"><span class="chip prio-med">Średni</span></td>
-  <td class="src"><a href="#" target="_blank" rel="noopener">źródło</a></td>
-</tr>
-<tr>
-  <td>Dz.U. 2024 poz. YYYY</td>
-  <td>PRZYKŁAD (archiwum testowe): hałas i pomiary środowiska pracy</td>
-  <td>Hałas</td>
-  <td class="chips">
-    <span class="chip">Produkcja lekka</span>
-    <span class="chip">Logistyka/Magazyny</span>
-  </td>
-  <td>
-    Zaplanować pomiary i aktualizację oceny ryzyka; poinformować brygadzistów o zmianach limitów.<br>
-    <strong>Termin:</strong> do 15.11.2024.
-  </td>
-  <td class="chips"><span class="chip status">Nowelizacja</span></td>
-  <td class="chips"><span class="chip prio-low">Niski</span></td>
-  <td class="src"><a href="#" target="_blank" rel="noopener">źródło</a></td>
-</tr>
               </tbody>
             </table>
           </div>
@@ -238,43 +204,9 @@
               </tr>
             </thead>
             <tbody>
-              <tr>
-  <td colspan="8" style="background:#f3f4f6;font-weight:700">
-    Okres: 04–10.09.2024 (pn–nd)
-  </td>
-</tr>
-<tr>
-  <td>Dz.U. 2024 poz. AAAA</td>
-  <td>PRZYKŁAD (archiwum testowe): drogi ewakuacyjne — doprecyzowanie wymagań</td>
-  <td>Ewakuacja</td>
-  <td class="chips">
-    <span class="chip">Budownictwo</span>
-    <span class="chip">Biura/Usługi</span>
-  </td>
-  <td>
-    Zweryfikować oznakowanie i oświetlenie ewakuacyjne; uzupełnić instrukcję bezpieczeństwa pożarowego.<br>
-    <strong>Termin:</strong> do 30.11.2024.
-  </td>
-  <td class="chips"><span class="chip status">Wchodzi w życie</span></td>
-  <td class="chips"><span class="chip prio-med">Średni</span></td>
-  <td class="src"><a href="#" target="_blank" rel="noopener">źródło</a></td>
-</tr>
-<tr>
-  <td>Dz.U. 2024 poz. BBBB</td>
-  <td>PRZYKŁAD (archiwum testowe): gaśnice – przeglądy i rozmieszczenie</td>
-  <td>Gaśnice</td>
-  <td class="chips">
-    <span class="chip">Logistyka/Magazyny</span>
-    <span class="chip">Ogólne</span>
-  </td>
-  <td>
-    Sprawdzić terminy przeglądów, zgodność typu gaśnic z kategorią zagrożenia pożarowego; uaktualnić plan PPOŻ.<br>
-    <strong>Termin:</strong> do 31.10.2024.
-  </td>
-  <td class="chips"><span class="chip status">Nowelizacja</span></td>
-  <td class="chips"><span class="chip prio-low">Niski</span></td>
-  <td class="src"><a href="#" target="_blank" rel="noopener">źródło</a></td>
-</tr>
+              <tr class="no-updates">
+                <td colspan="8">W ubiegłym tygodniu nie opublikowano nowych aktów prawnych dotyczących ochrony przeciwpożarowej.</td>
+              </tr>
               <!-- WZORZEC WIERSZA – identyczny jak dla BHP -->
             </tbody>
           </table>
@@ -322,7 +254,7 @@
           <figcaption>
             <p class="gc-title">Pomożecie? Pomożemy.</p>
             <p class="gc-sub">Audyty, wdrożenia, szkolenia. Daj nam tydzień — będzie ogarnięte.</p>
-            <div class="cta"><a href="/#kontakt">Zapytaj o pomoc</a></div>
+            <div class="cta"><a href="/#kontakt">← Zapytaj o pomoc</a></div>
           </figcaption>
         </figure>
       </div>
@@ -334,5 +266,3 @@
   </main>
 </body>
 </html>
-
-
