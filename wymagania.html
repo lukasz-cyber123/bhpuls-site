@@ -7,17 +7,11 @@
   <meta name="description" content="Cotygodniowe, zwięzłe podsumowania zmian w przepisach BHP i PPOŻ. Konkretne zalecenia, branże, status, priorytet i źródła." />
   <style>
     :root{
-      --brand:#008C45;   /* zielony BHpuls */
-      --accent:#E9782A;  /* pomarańcz do CTA */
-      --text:#1b1d1f;
-      --muted:#6b7280;
-      --bg:#ffffff;
-      --card:#f8fafc;
-      --border:#e5e7eb;
+      --brand:#008C45; --accent:#E9782A; --text:#1b1d1f; --muted:#6b7280;
+      --bg:#fff; --card:#f8fafc; --border:#e5e7eb;
     }
-    html,body{margin:0;padding:0;background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,"Segoe UI",Roboto,Ubuntu,"Noto Sans",sans-serif}
-
-    /* GÓRNY PASEK z LOGO i PRZYCISKIEM */
+    html,body{margin:0;padding:0;background:var(--bg);color:var(--text);
+      font-family:system-ui,-apple-system,"Segoe UI",Roboto,Ubuntu,"Noto Sans",sans-serif}
     .topbar{position:sticky;top:0;z-index:10;background:#fff;border-bottom:1px solid var(--border)}
     .topbar .bar{max-width:1200px;margin:auto;padding:10px 16px;display:flex;align-items:center;justify-content:space-between;gap:12px}
     .brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:inherit}
@@ -25,34 +19,26 @@
     .brand span{font-weight:800;letter-spacing:.2px}
     .home-btn{display:inline-block;text-decoration:none;border:1px solid var(--border);padding:8px 12px;border-radius:10px;color:var(--brand);background:#fff}
     .home-btn:hover{background:#f9fafb}
-
     .wrap{max-width:1200px;margin:auto;padding:24px}
     header.hero{margin:12px 0 18px}
     header.hero h1{margin:0 0 6px;font-size:clamp(1.6rem,2.4vw,2.2rem);font-weight:800;letter-spacing:.2px}
     header.hero p{margin:0;color:var(--muted)}
     .quicklinks{margin:14px 0 24px;display:flex;gap:10px;flex-wrap:wrap}
     .quicklinks a{display:inline-block;padding:8px 12px;border:1px solid var(--border);border-radius:999px;text-decoration:none;color:var(--brand);background:#fff}
-
-    /* Sekcje */
     .grid{display:grid;grid-template-columns:1fr;gap:16px}
     @media(min-width:900px){.grid{grid-template-columns:1fr 1fr}}
-
     .card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:16px}
     .card .head{display:flex;align-items:center;gap:12px;margin-bottom:10px}
     .icon{width:38px;height:38px;border-radius:10px;display:grid;place-items:center;color:#fff;background:linear-gradient(135deg,var(--brand),#0aa45a);font-size:20px}
     .kicker{margin:0;color:var(--muted);text-transform:uppercase;font-size:.76rem;letter-spacing:.08em}
-    .title{margin:2px 0 2px 0;font-size:1.1rem;font-weight:800}
-    .period{font-size:.88rem;color:var(--muted)}
-    .updated{font-size:.82rem;color:var(--muted)}
-
-    /* Tabele */
+    .title{margin:2px 0;font-size:1.1rem;font-weight:800}
+    .period,.updated{font-size:.88rem;color:var(--muted)}
     .table-wrap{overflow-x:auto;border:1px solid var(--border);border-radius:10px;background:#fff}
     table{width:100%;border-collapse:collapse;min-width:900px}
     th,td{padding:10px 12px;border-bottom:1px solid var(--border);vertical-align:top}
     th{background:#f3f4f6;text-align:left;font-size:.9rem}
     td{font-size:.92rem}
     .no-updates td{color:var(--muted);font-style:italic;text-align:center}
-
     .chips{display:flex;gap:6px;flex-wrap:wrap}
     .chip{display:inline-flex;align-items:center;border-radius:999px;padding:2px 8px;font-size:.78rem;border:1px solid #ddd;background:#fff}
     .chip.status{border-color:rgba(0,0,0,.06);background:#eef2ff}
@@ -61,11 +47,8 @@
     .chip.prio-low{background:#ecfdf5}
     .src a{color:var(--brand);text-decoration:none}
     .src a:hover{text-decoration:underline}
-
     details.archive{margin-top:10px}
     details.archive summary{cursor:pointer;color:var(--brand);font-weight:700}
-
-    /* Grafiki/CTA */
     .graphics{margin:30px 0}
     .graphics .g{display:grid;grid-template-columns:1fr;gap:16px}
     @media(min-width:900px){.graphics .g{grid-template-columns:1fr 1fr}}
@@ -77,13 +60,13 @@
     .cta{margin-top:10px}
     .cta a{display:inline-block;background:var(--accent);color:#fff;text-decoration:none;padding:10px 14px;border-radius:10px}
     .cta a:hover{opacity:.95}
-
     footer.ft{margin:26px 0 4px;color:var(--muted);font-size:.82rem}
+    .error{margin-top:10px;color:#b91c1c}
   </style>
 </head>
 
 <body>
-  <!-- TOPBAR z LOGO i przyciskiem powrotu -->
+  <!-- Pasek z logo i powrotem -->
   <div class="topbar" role="banner">
     <div class="bar">
       <a href="/" class="brand" aria-label="BHpuls – strona główna">
@@ -95,18 +78,15 @@
   </div>
 
   <main class="wrap">
-    <!-- HERO -->
     <header class="hero" aria-labelledby="h1">
       <h1 id="h1">Aktualne wymagania prawne — BHP i&nbsp;PPOŻ</h1>
-      <p>Co tydzień, krótko i na temat. <strong>Tydzień: 08–14.09.2025 (pn–nd)</strong>. <span class="updated">Ostatnia aktualizacja: 09.09.2025</span></p>
+      <p>Co tydzień, krótko i na temat. <strong>Tydzień: <span id="meta-period">08–14.09.2025</span> (pn–nd)</strong>.
+        <span class="updated">Ostatnia aktualizacja: <span id="meta-updated">09.09.2025</span></span></p>
       <nav class="quicklinks" aria-label="Szybkie linki">
-        <a href="#bhp">BHP</a>
-        <a href="#ppoz">PPOŻ</a>
-        <a href="#grafiki">Masz mętlik? Pomożemy →</a>
+        <a href="#bhp">BHP</a><a href="#ppoz">PPOŻ</a><a href="#grafiki">Masz mętlik? Pomożemy →</a>
       </nav>
     </header>
 
-    <!-- DWA BLOKI: BHP + PPOŻ -->
     <section class="grid" aria-label="Podsumowania">
       <!-- BHP -->
       <article class="card" id="bhp" aria-labelledby="bhp-title">
@@ -115,7 +95,7 @@
           <div>
             <p class="kicker">Bezpieczeństwo i higiena pracy</p>
             <h2 class="title" id="bhp-title">BHP — podsumowanie tygodnia</h2>
-            <div class="period">Okres: 08–14.09.2025</div>
+            <div class="period">Okres: <span id="bhp-period">08–14.09.2025</span></div>
           </div>
         </div>
 
@@ -133,24 +113,7 @@
                 <th style="width:110px">Źródło</th>
               </tr>
             </thead>
-            <tbody>
-              <tr class="no-updates">
-                <td colspan="8">W ubiegłym tygodniu nie opublikowano nowych aktów prawnych dotyczących BHP.</td>
-              </tr>
-              <!--
-              WZORZEC WIERSZA (skopiuj i uzupełnij, a wiersz „no-updates” usuń):
-              <tr>
-                <td>Dz.U. 2025 poz. 1234</td>
-                <td>Rozporządzenie … (krótki tytuł)</td>
-                <td>Temat (np. ŚOI)</td>
-                <td class="chips"><span class="chip">Automotive</span><span class="chip">Ogólne</span></td>
-                <td>Co zrobić w 1–2 zdaniach.<br><strong>Termin:</strong> DD.MM.RRRR.</td>
-                <td class="chips"><span class="chip status">Wchodzi w życie</span></td>
-                <td class="chips"><span class="chip prio-med">Średni</span></td>
-                <td class="src"><a href="LINK_DO_ISAP" target="_blank" rel="noopener">źródło</a></td>
-              </tr>
-              -->
-            </tbody>
+            <tbody data-role="current"><!-- wypełnia JS --></tbody>
           </table>
         </div>
 
@@ -170,9 +133,7 @@
                   <th style="width:110px">Źródło</th>
                 </tr>
               </thead>
-              <tbody>
-                <!-- Przenoś tu cały poprzedni tydzień (pn–nd) -->
-              </tbody>
+              <tbody data-role="archive"><!-- wypełnia JS --></tbody>
             </table>
           </div>
         </details>
@@ -185,7 +146,7 @@
           <div>
             <p class="kicker">Ochrona przeciwpożarowa</p>
             <h2 class="title" id="ppoz-title">PPOŻ — podsumowanie tygodnia</h2>
-            <div class="period">Okres: 08–14.09.2025</div>
+            <div class="period">Okres: <span id="ppoz-period">08–14.09.2025</span></div>
           </div>
         </div>
 
@@ -203,12 +164,7 @@
                 <th style="width:110px">Źródło</th>
               </tr>
             </thead>
-            <tbody>
-              <tr class="no-updates">
-                <td colspan="8">W ubiegłym tygodniu nie opublikowano nowych aktów prawnych dotyczących ochrony przeciwpożarowej.</td>
-              </tr>
-              <!-- WZORZEC WIERSZA – identyczny jak dla BHP -->
-            </tbody>
+            <tbody data-role="current"><!-- wypełnia JS --></tbody>
           </table>
         </div>
 
@@ -228,9 +184,7 @@
                   <th style="width:110px">Źródło</th>
                 </tr>
               </thead>
-              <tbody>
-                <!-- Przenoś tu cały poprzedni tydzień (pn–nd) -->
-              </tbody>
+              <tbody data-role="archive"><!-- wypełnia JS --></tbody>
             </table>
           </div>
         </details>
@@ -248,7 +202,6 @@
             <p class="gc-sub">Co tydzień podajemy zmiany po ludzku — bez prawniczego bełkotu.</p>
           </figcaption>
         </figure>
-
         <figure>
           <img src="wymagania-bhpuls.jpg" alt="Specjalista BHP w kasku z logo BHpuls — doradztwo prawne BHP." loading="lazy">
           <figcaption>
@@ -262,7 +215,80 @@
 
     <footer class="ft">
       Materiał informacyjny — nie stanowi porady prawnej. Zawsze weryfikuj u źródła (ISAP / RCL / EUR-Lex).
+      <div id="err" class="error" aria-live="polite"></div>
     </footer>
   </main>
+
+  <!-- JS: wczytuje wymagania-data.json i wypełnia tabele -->
+  <script>
+  (async () => {
+    const $ = (sel, root=document) => root.querySelector(sel);
+    const esc = s => String(s ?? '').replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
+    const statusLabel = { wchodzi:'Wchodzi w życie', nowelizacja:'Nowelizacja', tekst_jednolity:'Tekst jednolity', traci:'Traci moc', nowe:'Nowe' };
+    const prioClass = { wysoki:'prio-high', sredni:'prio-med', niski:'prio-low' };
+    const prioLabel = s => s ? s.charAt(0).toUpperCase()+s.slice(1) : '';
+
+    function rowHTML(it){
+      const tags = (it.tags||[]).map(t=>`<span class="chip">${esc(t)}</span>`).join('');
+      const st = statusLabel[it.status] || esc(it.status||'');
+      const pr = prioClass[it.prio] || '';
+      const dl = it.deadline ? `<br><strong>Termin:</strong> ${esc(it.deadline)}.` : '';
+      return `<tr>
+        <td>${esc(it.pub)}</td>
+        <td>${esc(it.title)}</td>
+        <td>${esc(it.topic)}</td>
+        <td class="chips">${tags}</td>
+        <td>${esc(it.action)}${dl}</td>
+        <td class="chips"><span class="chip status">${esc(st)}</span></td>
+        <td class="chips"><span class="chip ${pr}">${esc(prioLabel(it.prio))}</span></td>
+        <td class="src"><a href="${esc(it.src||'#')}" target="_blank" rel="noopener">źródło</a></td>
+      </tr>`;
+    }
+
+    function fillCurrent(scopeSel, items, emptyMsg){
+      const tbody = $(`${scopeSel} tbody[data-role="current"]`);
+      if(!tbody) return;
+      tbody.innerHTML = (items && items.length)
+        ? items.map(rowHTML).join('')
+        : `<tr class="no-updates"><td colspan="8">${esc(emptyMsg)}</td></tr>`;
+    }
+
+    function fillArchive(scopeSel, groups){
+      const tbody = $(`${scopeSel} tbody[data-role="archive"]`);
+      if(!tbody) return;
+      tbody.innerHTML = (groups||[]).map(g=>{
+        const header = `<tr><td colspan="8" style="background:#f3f4f6;font-weight:700">Okres: ${esc(g.period)} (pn–nd)</td></tr>`;
+        const rows = (g.items||[]).map(rowHTML).join('');
+        return header + rows;
+      }).join('');
+    }
+
+    try{
+      const res = await fetch('wymagania-data.json', {cache:'no-store'});
+      const data = await res.json();
+
+      // daty
+      const period = data.meta?.period || '';
+      const updated = data.meta?.updated || '';
+      const setIf = (id,val)=>{ const el=$(id); if(el && val) el.textContent = val; };
+      setIf('#meta-period', period); setIf('#meta-updated', updated);
+      setIf('#bhp-period', period);  setIf('#ppoz-period', period);
+
+      // tabele
+      fillCurrent('#bhp', data.bhp, 'W ubiegłym tygodniu nie opublikowano nowych aktów prawnych dotyczących BHP.');
+      fillCurrent('#ppoz', data.ppoz, 'W ubiegłym tygodniu nie opublikowano nowych aktów prawnych dotyczących ochrony przeciwpożarowej.');
+      fillArchive('#bhp',  data.archive?.bhp  || []);
+      fillArchive('#ppoz', data.archive?.ppoz || []);
+    }catch(e){
+      console.warn(e);
+      const err = document.getElementById('err');
+      if(err) err.textContent = 'Nie udało się wczytać danych (wymagania-data.json). Sprawdź, czy plik jest w katalogu głównym.';
+    }
+  })();
+  </script>
+
+  <noscript>
+    <div style="padding:12px;color:#b91c1c">Ta podstrona wymaga włączonego JavaScript, aby wczytać aktualne dane.</div>
+  </noscript>
 </body>
 </html>
